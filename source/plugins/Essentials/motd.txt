@@ -1,0 +1,3 @@
+&c欢迎, {PLAYER}&c!
+&f输入 &c/help&f 查看帮助.
+当前在线: {PLAYERLIST}

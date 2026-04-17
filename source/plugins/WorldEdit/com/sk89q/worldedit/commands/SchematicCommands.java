@@ -1,0 +1,210 @@
+package com.sk89q.worldedit.commands;
+
+import com.sk89q.minecraft.util.commands.Command;
+import com.sk89q.minecraft.util.commands.CommandContext;
+import com.sk89q.minecraft.util.commands.CommandException;
+import com.sk89q.minecraft.util.commands.CommandPermissions;
+import com.sk89q.minecraft.util.commands.Console;
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.FilenameResolutionException;
+import com.sk89q.worldedit.LocalConfiguration;
+import com.sk89q.worldedit.LocalPlayer;
+import com.sk89q.worldedit.LocalSession;
+import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.WorldEditException;
+import com.sk89q.worldedit.data.DataException;
+import com.sk89q.worldedit.schematic.SchematicFormat;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class SchematicCommands {
+   private final WorldEdit we;
+
+   public SchematicCommands(WorldEdit we) {
+      this.we = we;
+   }
+
+   @Command(
+      aliases = {"load", "l"},
+      usage = "[format] <filename>",
+      desc = "Load a schematic into your clipboard",
+      help = "Load a schematic into your clipboard\nFormat is a format from \"//schematic formats\"\nIf the format is not provided, WorldEdit will\nattempt to automatically detect the format of the schematic",
+      flags = "f",
+      min = 1,
+      max = 2
+   )
+   @CommandPermissions({"worldedit.clipboard.load", "worldedit.schematic.load"})
+   public void load(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      LocalConfiguration config = this.we.getConfiguration();
+      String fileName;
+      String formatName;
+      if (args.argsLength() == 1) {
+         formatName = null;
+         fileName = args.getString(0);
+      } else {
+         formatName = args.getString(0);
+         fileName = args.getString(1);
+      }
+
+      File dir = this.we.getWorkingDirectoryFile(config.saveDir);
+      File f = this.we.getSafeOpenFile(player, dir, fileName, "schematic", "schematic");
+      if (!f.exists()) {
+         player.printError("Schematic " + fileName + " does not exist!");
+      } else {
+         SchematicFormat format = formatName == null ? null : SchematicFormat.getFormat(formatName);
+         if (format == null) {
+            format = SchematicFormat.getFormat(f);
+         }
+
+         if (format == null) {
+            player.printError("Unknown schematic format: " + formatName);
+         } else if (!format.isOfFormat(f) && !args.hasFlag('f')) {
+            player.printError(fileName + " is not of the " + format.getName() + " schematic format!");
+         } else {
+            try {
+               String filePath = f.getCanonicalPath();
+               String dirPath = dir.getCanonicalPath();
+               if (!filePath.substring(0, dirPath.length()).equals(dirPath)) {
+                  player.printError("Schematic could not read or it does not exist.");
+               } else {
+                  session.setClipboard(format.load(f));
+                  WorldEdit.logger.info(player.getName() + " loaded " + filePath);
+                  player.print(fileName + " loaded. Paste it with //paste");
+               }
+            } catch (DataException e) {
+               player.printError("Load error: " + e.getMessage());
+            } catch (IOException e) {
+               player.printError("Schematic could not read or it does not exist: " + e.getMessage());
+            }
+
+         }
+      }
+   }
+
+   @Command(
+      aliases = {"save", "s"},
+      usage = "[format] <filename>",
+      desc = "Save a schematic into your clipboard",
+      help = "Save a schematic into your clipboard\nFormat is a format from \"//schematic formats\"\n",
+      min = 1,
+      max = 2
+   )
+   @CommandPermissions({"worldedit.clipboard.save", "worldedit.schematic.save"})
+   public void save(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException, CommandException {
+      LocalConfiguration config = this.we.getConfiguration();
+      SchematicFormat format;
+      if (args.argsLength() == 1) {
+         if (SchematicFormat.getFormats().size() != 1) {
+            player.printError("More than one schematic format is available. Please provide the desired format");
+            return;
+         }
+
+         format = (SchematicFormat)SchematicFormat.getFormats().iterator().next();
+      } else {
+         format = SchematicFormat.getFormat(args.getString(0));
+         if (format == null) {
+            player.printError("Unknown schematic format: " + args.getString(0));
+            return;
+         }
+      }
+
+      String filename = args.getString(args.argsLength() - 1);
+      File dir = this.we.getWorkingDirectoryFile(config.saveDir);
+      File f = this.we.getSafeSaveFile(player, dir, filename, "schematic", "schematic");
+      if (!dir.exists() && !dir.mkdir()) {
+         player.printError("The storage folder could not be created.");
+      } else {
+         try {
+            File parent = f.getParentFile();
+            if (parent != null && !parent.exists() && !parent.mkdirs()) {
+               throw new CommandException("Could not create folder for schematics!");
+            }
+
+            format.save(session.getClipboard(), f);
+            WorldEdit.logger.info(player.getName() + " saved " + f.getCanonicalPath());
+            player.print(filename + " saved.");
+         } catch (DataException se) {
+            player.printError("Save error: " + se.getMessage());
+         } catch (IOException e) {
+            player.printError("Schematic could not written: " + e.getMessage());
+         }
+
+      }
+   }
+
+   @Command(
+      aliases = {"formats", "listformats", "f"},
+      desc = "List available schematic formats",
+      max = 0
+   )
+   @Console
+   @CommandPermissions({"worldedit.schematic.formats"})
+   public void formats(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      player.print("Available schematic formats (Name: Lookup names)");
+      boolean first = true;
+
+      for(SchematicFormat format : SchematicFormat.getFormats()) {
+         StringBuilder builder = new StringBuilder();
+         builder.append(format.getName()).append(": ");
+
+         for(String lookupName : format.getLookupNames()) {
+            if (!first) {
+               builder.append(", ");
+            }
+
+            builder.append(lookupName);
+            first = false;
+         }
+
+         first = true;
+         player.print(builder.toString());
+      }
+
+   }
+
+   @Command(
+      aliases = {"list", "all", "ls"},
+      desc = "List available schematics",
+      max = 0,
+      flags = "dn",
+      help = "List all schematics in the schematics directory\n -d sorts by date, oldest first\n -n sorts by date, newest first\n"
+   )
+   @Console
+   @CommandPermissions({"worldedit.schematic.list"})
+   public void list(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      File dir = this.we.getWorkingDirectoryFile(this.we.getConfiguration().saveDir);
+      File[] files = dir.listFiles();
+      if (files == null) {
+         throw new FilenameResolutionException(dir.getPath(), "Schematics directory invalid or not found.");
+      } else {
+         StringBuilder build = new StringBuilder("Available schematics (Filename (Format)): ");
+         final int sortType = args.hasFlag('d') ? -1 : (args.hasFlag('n') ? 1 : 0);
+         Arrays.sort(files, new Comparator() {
+            public int compare(File f1, File f2) {
+               if (f1.isFile() && f2.isFile()) {
+                  int result = sortType == 0 ? f1.getName().compareToIgnoreCase(f2.getName()) : Long.valueOf(f1.lastModified()).compareTo(f2.lastModified());
+                  if (sortType == 1) {
+                     result = -result;
+                  }
+
+                  return result;
+               } else {
+                  return -1;
+               }
+            }
+         });
+
+         for(File file : files) {
+            if (file.isFile()) {
+               build.append("\n§9");
+               SchematicFormat format = SchematicFormat.getFormat(file);
+               build.append(file.getName()).append(": ").append(format == null ? "Unknown" : format.getName());
+            }
+         }
+
+         player.print(build.toString());
+      }
+   }
+}

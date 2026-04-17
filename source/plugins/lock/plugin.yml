@@ -1,0 +1,11 @@
+name: lock
+main: lock.Lock
+version: 1.0
+softdepend: [lib]
+commands:
+  locks:
+    description: none.
+    usage: /<command> ?
+  key:
+    description: none.
+    usage: /<command> ?

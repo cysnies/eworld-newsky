@@ -1,0 +1,14 @@
+name: land
+main: landMain.LandMain
+version: 1.0
+softdepend: [lib,basic,QuickShop,friend,NoCheatPlus]
+commands:
+  land:
+    description: none.
+    usage: /<command> ?
+  l:
+    description: none.
+    usage: /<command> ?
+  go:
+    description: none.
+    usage: /<command> ?

@@ -1,0 +1,8 @@
+name: resource
+main: resource.Main
+version: 1.0
+softdepend: [lib,land]
+commands:
+  resource:
+    description: none.
+    usage: /<command> ?

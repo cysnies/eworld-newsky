@@ -1,0 +1,8 @@
+name: join
+main: join.Join
+version: 1.0
+softdepend: [lib]
+commands:
+  join:
+    description: none.
+    usage: /<command> ?

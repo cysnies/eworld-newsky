@@ -1,0 +1,45 @@
+name: lib
+main: lib.Lib
+version: 1.0
+load: startup
+softdepend: [Vault,ProtocolLib]
+commands:
+  lib:
+    description: none
+    usage: /<command> ?
+  items:
+    description: none
+    usage: /<command> ?
+  is:
+    description: none
+    usage: /<command> ?
+  enchants:
+    description: none
+    usage: /<command> ?
+  potions:
+    description: none
+    usage: /<command> ?
+  d:
+    description: none
+    usage: /<command> ?
+  rewards:
+    description: none
+    usage: /<command> ?
+  re:
+    description: none
+    usage: /<command> ?
+  copy:
+    description: none
+    usage: /<command> ?
+  side:
+    description: none
+    usage: /<command> ?
+  costs:
+    description: none
+    usage: /<command> ?
+  s:
+    description: none
+    usage: /<command> ?
+  debt:
+    description: none
+    usage: /<command> ?

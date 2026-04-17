@@ -1,0 +1,51 @@
+#################################
+#####       语言文件        #####
+#################################
+language: "plugins/house/language_cn.yml"
+#################################
+#####         权限          #####
+#################################
+#管理权限
+per_house_admin: "per.house.admin"
+#################################
+#####          配置         #####
+#################################
+addFlags:                       #家创建后自动添加的标记
+  - "house:0"
+  - "banBonemeal:0"
+  - "banBreak:0"
+  - "banPlace:0"
+  - "banIgnite:0"
+  - "banDoor:0"
+  - "banContact:0"
+  - "banButton:0"
+  - "banContainer:0"
+  - "banUseOther:0"
+  - "banBucket:0"
+  - "protect:0"
+  - "banPotionHurt:0"
+  - "banEntityChange:0"
+  - "fixBug:0"
+houseWorldName: "sky"
+house:
+  suf: "的岛"             #默认后缀(如'你进入了 xxx 的岛')
+  level: 100              #家领地的等级
+  start: 0                #从第几层开始(实际上领地最下面会比这个高一层,这样可以让玩家无法挖下去)
+  yyFix: 30
+  xxFix: 151
+  zzFix: 151
+  initHeiht: 128          #家初始高度
+  size: 300               #每个家包括边缘大小为size*size*initHeight
+  edgeSize: 0             #家边缘大小(x与z)
+  spawn:
+    x: 150.5
+    y: 32.0
+    z: 150.5
+    yaw: -180.0
+    pitch: 0.0 
+  generate:
+    houseFile: "house.schematic"    #使用的家文件
+upgrade:
+  cost: 3000              #升级家每次花费
+  amount: 10              #升级家每次增加的高度
+  max: 250                #Y轴最大高度

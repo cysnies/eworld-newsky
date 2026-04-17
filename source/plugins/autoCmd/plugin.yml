@@ -1,0 +1,8 @@
+name: autoCmd
+main: autoCmd.Main
+version: 1.0
+softdepend: [lib]
+commands:
+  autoCmd:
+    description: none.
+    usage: /<command> ?

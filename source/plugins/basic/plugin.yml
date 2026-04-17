@@ -1,0 +1,8 @@
+name: basic
+main: basic.Basic
+version: 1.0
+softdepend: [lib,QuickShop,ProtocolLib]
+commands:
+  basic:
+    description: none.
+    usage: /<command> ?

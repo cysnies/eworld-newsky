@@ -1,0 +1,45 @@
+这是info文件
+
+这个文件的格式就像info.txt, motd.txt 和 rules.txt
+
+你可以为玩家或组创建一个特殊的文件
+文件命名为 info_玩家名称.txt 或 info_组名称.txt
+
+这个格式在motd.txt和rules.txt通用
+例子:
+输入 /info 颜色
+输入 /info 标签
+
+如果无法使用/info,请尝试使用/einfo
+
+井号代表章节名称,不是注释.
+
+#颜色
+Minecraft 颜色代码:
+&0 &&0  &1 &&1  &2 &&2  &3 &&3
+&4 &&4  &5 &&5  &6 &&6  &7 &&7
+&8 &&8  &9 &&9  &a &&a  &b &&b
+&c &&c  &d &&d  &e &&e  &f &&f
+&0 
+&&k &k随机&r   &&l &l粗体
+&&m &m删除线&r  &&n &n下划线
+&&o &o斜体&r   &&r &r重置
+
+#标签
+&6玩家名称:&r {PLAYER}
+&6IP:&r {IP}
+&6地址:&r {ADDRESS}
+&6金钱:&r {BALANCE}
+&6未读邮件:&r {MAILS}
+&6当前世界:&r {WORLD}
+&6世界列表:&r {WORLDS}
+&6在线玩家数量:&r {ONLINE}
+&6在线特殊玩家数量:&r {UNIQUE}
+&6玩家列表:&r {PLAYERLIST}
+&6服务器时间:&r {TIME}
+&6服务器日期:&r {DATE}
+&6世界时间 12小时制:&r {WORLDTIME12}
+&6世界时间 24小时制:&r {WORLDTIME24}
+&6世界日期:&r {WORLDDATE}
+&6插件列表:&r {PLUGINS}
+&6Craftbukkit版本:&r {VERSION}

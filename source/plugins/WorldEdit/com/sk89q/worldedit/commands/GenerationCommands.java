@@ -1,0 +1,329 @@
+package com.sk89q.worldedit.commands;
+
+import com.sk89q.minecraft.util.commands.Command;
+import com.sk89q.minecraft.util.commands.CommandContext;
+import com.sk89q.minecraft.util.commands.CommandPermissions;
+import com.sk89q.minecraft.util.commands.Logging;
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.LocalPlayer;
+import com.sk89q.worldedit.LocalSession;
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.WorldEditException;
+import com.sk89q.worldedit.expression.ExpressionException;
+import com.sk89q.worldedit.patterns.Pattern;
+import com.sk89q.worldedit.regions.Region;
+import com.sk89q.worldedit.util.TreeGenerator;
+
+public class GenerationCommands {
+   private final WorldEdit we;
+
+   public GenerationCommands(WorldEdit we) {
+      this.we = we;
+   }
+
+   @Command(
+      aliases = {"/hcyl"},
+      usage = "<block> <radius>[,<radius>] [height]",
+      desc = "Generates a hollow cylinder.",
+      help = "Generates a hollow cylinder.\nBy specifying 2 radii, separated by a comma,\nyou can generate elliptical cylinders.\nThe 1st radius is north/south, the 2nd radius is east/west.",
+      min = 2,
+      max = 3
+   )
+   @CommandPermissions({"worldedit.generation.cylinder"})
+   @Logging(Logging.LogMode.PLACEMENT)
+   public void hcyl(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      Pattern block = this.we.getBlockPattern(player, args.getString(0));
+      String[] radiuses = args.getString(1).split(",");
+      double radiusX;
+      double radiusZ;
+      switch (radiuses.length) {
+         case 1:
+            radiusX = radiusZ = Math.max((double)1.0F, Double.parseDouble(radiuses[0]));
+            break;
+         case 2:
+            radiusX = Math.max((double)1.0F, Double.parseDouble(radiuses[0]));
+            radiusZ = Math.max((double)1.0F, Double.parseDouble(radiuses[1]));
+            break;
+         default:
+            player.printError("You must either specify 1 or 2 radius values.");
+            return;
+      }
+
+      int height = args.argsLength() > 2 ? args.getInteger(2) : 1;
+      this.we.checkMaxRadius(radiusX);
+      this.we.checkMaxRadius(radiusZ);
+      this.we.checkMaxRadius((double)height);
+      Vector pos = session.getPlacementPosition(player);
+      int affected = editSession.makeCylinder(pos, block, radiusX, radiusZ, height, false);
+      player.print(affected + " block(s) have been created.");
+   }
+
+   @Command(
+      aliases = {"/cyl"},
+      usage = "<block> <radius>[,<radius>] [height]",
+      desc = "Generates a cylinder.",
+      help = "Generates a cylinder.\nBy specifying 2 radii, separated by a comma,\nyou can generate elliptical cylinders.\nThe 1st radius is north/south, the 2nd radius is east/west.",
+      min = 2,
+      max = 3
+   )
+   @CommandPermissions({"worldedit.generation.cylinder"})
+   @Logging(Logging.LogMode.PLACEMENT)
+   public void cyl(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      Pattern block = this.we.getBlockPattern(player, args.getString(0));
+      String[] radiuses = args.getString(1).split(",");
+      double radiusX;
+      double radiusZ;
+      switch (radiuses.length) {
+         case 1:
+            radiusX = radiusZ = Math.max((double)1.0F, Double.parseDouble(radiuses[0]));
+            break;
+         case 2:
+            radiusX = Math.max((double)1.0F, Double.parseDouble(radiuses[0]));
+            radiusZ = Math.max((double)1.0F, Double.parseDouble(radiuses[1]));
+            break;
+         default:
+            player.printError("You must either specify 1 or 2 radius values.");
+            return;
+      }
+
+      int height = args.argsLength() > 2 ? args.getInteger(2) : 1;
+      this.we.checkMaxRadius(radiusX);
+      this.we.checkMaxRadius(radiusZ);
+      this.we.checkMaxRadius((double)height);
+      Vector pos = session.getPlacementPosition(player);
+      int affected = editSession.makeCylinder(pos, block, radiusX, radiusZ, height, true);
+      player.print(affected + " block(s) have been created.");
+   }
+
+   @Command(
+      aliases = {"/hsphere"},
+      usage = "<block> <radius>[,<radius>,<radius>] [raised?]",
+      desc = "Generates a hollow sphere.",
+      help = "Generates a hollow sphere.\nBy specifying 3 radii, separated by commas,\nyou can generate an ellipsoid. The order of the ellipsoid radii\nis north/south, up/down, east/west.",
+      min = 2,
+      max = 3
+   )
+   @CommandPermissions({"worldedit.generation.sphere"})
+   @Logging(Logging.LogMode.PLACEMENT)
+   public void hsphere(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      Pattern block = this.we.getBlockPattern(player, args.getString(0));
+      String[] radiuses = args.getString(1).split(",");
+      double radiusX;
+      double radiusY;
+      double radiusZ;
+      switch (radiuses.length) {
+         case 1:
+            radiusX = radiusY = radiusZ = Math.max((double)1.0F, Double.parseDouble(radiuses[0]));
+            break;
+         case 3:
+            radiusX = Math.max((double)1.0F, Double.parseDouble(radiuses[0]));
+            radiusY = Math.max((double)1.0F, Double.parseDouble(radiuses[1]));
+            radiusZ = Math.max((double)1.0F, Double.parseDouble(radiuses[2]));
+            break;
+         default:
+            player.printError("You must either specify 1 or 3 radius values.");
+            return;
+      }
+
+      this.we.checkMaxRadius(radiusX);
+      this.we.checkMaxRadius(radiusY);
+      this.we.checkMaxRadius(radiusZ);
+      boolean raised;
+      if (args.argsLength() > 2) {
+         raised = args.getString(2).equalsIgnoreCase("true") || args.getString(2).equalsIgnoreCase("yes");
+      } else {
+         raised = false;
+      }
+
+      Vector pos = session.getPlacementPosition(player);
+      if (raised) {
+         pos = pos.add((double)0.0F, radiusY, (double)0.0F);
+      }
+
+      int affected = editSession.makeSphere(pos, block, radiusX, radiusY, radiusZ, false);
+      player.findFreePosition();
+      player.print(affected + " block(s) have been created.");
+   }
+
+   @Command(
+      aliases = {"/sphere"},
+      usage = "<block> <radius>[,<radius>,<radius>] [raised?]",
+      desc = "Generates a filled sphere.",
+      help = "Generates a filled sphere.\nBy specifying 3 radii, separated by commas,\nyou can generate an ellipsoid. The order of the ellipsoid radii\nis north/south, up/down, east/west.",
+      min = 2,
+      max = 3
+   )
+   @CommandPermissions({"worldedit.generation.sphere"})
+   @Logging(Logging.LogMode.PLACEMENT)
+   public void sphere(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      Pattern block = this.we.getBlockPattern(player, args.getString(0));
+      String[] radiuses = args.getString(1).split(",");
+      double radiusX;
+      double radiusY;
+      double radiusZ;
+      switch (radiuses.length) {
+         case 1:
+            radiusX = radiusY = radiusZ = Math.max((double)1.0F, Double.parseDouble(radiuses[0]));
+            break;
+         case 3:
+            radiusX = Math.max((double)1.0F, Double.parseDouble(radiuses[0]));
+            radiusY = Math.max((double)1.0F, Double.parseDouble(radiuses[1]));
+            radiusZ = Math.max((double)1.0F, Double.parseDouble(radiuses[2]));
+            break;
+         default:
+            player.printError("You must either specify 1 or 3 radius values.");
+            return;
+      }
+
+      this.we.checkMaxRadius(radiusX);
+      this.we.checkMaxRadius(radiusY);
+      this.we.checkMaxRadius(radiusZ);
+      boolean raised;
+      if (args.argsLength() > 2) {
+         raised = args.getString(2).equalsIgnoreCase("true") || args.getString(2).equalsIgnoreCase("yes");
+      } else {
+         raised = false;
+      }
+
+      Vector pos = session.getPlacementPosition(player);
+      if (raised) {
+         pos = pos.add((double)0.0F, radiusY, (double)0.0F);
+      }
+
+      int affected = editSession.makeSphere(pos, block, radiusX, radiusY, radiusZ, true);
+      player.findFreePosition();
+      player.print(affected + " block(s) have been created.");
+   }
+
+   @Command(
+      aliases = {"forestgen"},
+      usage = "[size] [type] [density]",
+      desc = "Generate a forest",
+      min = 0,
+      max = 3
+   )
+   @CommandPermissions({"worldedit.generation.forest"})
+   @Logging(Logging.LogMode.POSITION)
+   public void forestGen(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      int size = args.argsLength() > 0 ? Math.max(1, args.getInteger(0)) : 10;
+      TreeGenerator.TreeType type = args.argsLength() > 1 ? TreeGenerator.lookup(args.getString(1)) : TreeGenerator.TreeType.TREE;
+      double density = args.argsLength() > 2 ? args.getDouble(2) / (double)100.0F : 0.05;
+      if (type == null) {
+         player.printError("Tree type '" + args.getString(1) + "' is unknown.");
+      } else {
+         int affected = editSession.makeForest(session.getPlacementPosition(player), size, density, new TreeGenerator(type));
+         player.print(affected + " trees created.");
+      }
+   }
+
+   @Command(
+      aliases = {"pumpkins"},
+      usage = "[size]",
+      desc = "Generate pumpkin patches",
+      min = 0,
+      max = 1
+   )
+   @CommandPermissions({"worldedit.generation.pumpkins"})
+   @Logging(Logging.LogMode.POSITION)
+   public void pumpkins(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      int size = args.argsLength() > 0 ? Math.max(1, args.getInteger(0)) : 10;
+      int affected = editSession.makePumpkinPatches(session.getPlacementPosition(player), size);
+      player.print(affected + " pumpkin patches created.");
+   }
+
+   @Command(
+      aliases = {"/pyramid"},
+      usage = "<block> <size>",
+      desc = "Generate a filled pyramid",
+      min = 2,
+      max = 2
+   )
+   @CommandPermissions({"worldedit.generation.pyramid"})
+   @Logging(Logging.LogMode.PLACEMENT)
+   public void pyramid(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      Pattern block = this.we.getBlockPattern(player, args.getString(0));
+      int size = Math.max(1, args.getInteger(1));
+      Vector pos = session.getPlacementPosition(player);
+      this.we.checkMaxRadius((double)size);
+      int affected = editSession.makePyramid(pos, block, size, true);
+      player.findFreePosition();
+      player.print(affected + " block(s) have been created.");
+   }
+
+   @Command(
+      aliases = {"/hpyramid"},
+      usage = "<block> <size>",
+      desc = "Generate a hollow pyramid",
+      min = 2,
+      max = 2
+   )
+   @CommandPermissions({"worldedit.generation.pyramid"})
+   @Logging(Logging.LogMode.PLACEMENT)
+   public void hpyramid(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      Pattern block = this.we.getBlockPattern(player, args.getString(0));
+      int size = Math.max(1, args.getInteger(1));
+      Vector pos = session.getPlacementPosition(player);
+      this.we.checkMaxRadius((double)size);
+      int affected = editSession.makePyramid(pos, block, size, false);
+      player.findFreePosition();
+      player.print(affected + " block(s) have been created.");
+   }
+
+   @Command(
+      aliases = {"/generate", "/gen", "/g"},
+      usage = "<block> <expression>",
+      desc = "Generates a shape according to a formula.",
+      help = "Generates a shape according to a formula that is expected to\nreturn positive numbers (true) if the point is inside the shape\nOptionally set type/data to the desired block.\nFlags:\n  -h to generate a hollow shape\n  -r to use raw minecraft coordinates\n  -o is like -r, except offset from placement.\n  -c is like -r, except offset selection center.\nIf neither -r nor -o is given, the selection is mapped to -1..1\nSee also tinyurl.com/wesyntax.",
+      flags = "hroc",
+      min = 2,
+      max = -1
+   )
+   @CommandPermissions({"worldedit.generation.shape"})
+   @Logging(Logging.LogMode.ALL)
+   public void generate(CommandContext args, LocalSession session, LocalPlayer player, EditSession editSession) throws WorldEditException {
+      Pattern pattern = this.we.getBlockPattern(player, args.getString(0));
+      Region region = session.getSelection(player.getWorld());
+      boolean hollow = args.hasFlag('h');
+      String expression = args.getJoinedStrings(1);
+      Vector zero;
+      Vector unit;
+      if (args.hasFlag('r')) {
+         zero = Vector.ZERO;
+         unit = Vector.ONE;
+      } else if (args.hasFlag('o')) {
+         zero = session.getPlacementPosition(player);
+         unit = Vector.ONE;
+      } else if (args.hasFlag('c')) {
+         Vector min = region.getMinimumPoint();
+         Vector max = region.getMaximumPoint();
+         zero = max.add(min).multiply((double)0.5F);
+         unit = Vector.ONE;
+      } else {
+         Vector min = region.getMinimumPoint();
+         Vector max = region.getMaximumPoint();
+         zero = max.add(min).multiply((double)0.5F);
+         unit = max.subtract(zero);
+         if (unit.getX() == (double)0.0F) {
+            unit = unit.setX((double)1.0F);
+         }
+
+         if (unit.getY() == (double)0.0F) {
+            unit = unit.setY((double)1.0F);
+         }
+
+         if (unit.getZ() == (double)0.0F) {
+            unit = unit.setZ((double)1.0F);
+         }
+      }
+
+      try {
+         int affected = editSession.makeShape(region, zero, unit, pattern, expression, hollow);
+         player.findFreePosition();
+         player.print(affected + " block(s) have been created.");
+      } catch (ExpressionException e) {
+         player.printError(e.getMessage());
+      }
+
+   }
+}

@@ -1,0 +1,20 @@
+users:
+  cysnies:
+    group: diamond
+    subgroups: []
+    permissions: []
+  ElgarL:
+    group: default
+    subgroups: []
+    permissions:
+    - groupmanager.noofflineperms
+  KHobbits:
+    group: default
+    subgroups: []
+    permissions:
+    - groupmanager.noofflineperms
+  snowleo:
+    group: default
+    subgroups: []
+    permissions:
+    - groupmanager.noofflineperms

@@ -1,0 +1,4 @@
+name: AvoidDrop
+main: avoidDrop.AvoidDrop
+version: 1.0
+commands:

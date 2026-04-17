@@ -1,0 +1,8 @@
+name: ticket
+main: ticket.Ticket
+version: 1.0
+softdepend: [lib]
+commands:
+  use:
+    description: none.
+    usage: /<command> ?

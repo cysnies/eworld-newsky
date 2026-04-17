@@ -1,0 +1,4 @@
+name: SetCpu
+main: setcpu.SetCpu
+version: 1.0
+commands:

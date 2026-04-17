@@ -1,0 +1,9 @@
+name: adSign
+main: adSign.AdSign
+version: 1.0
+softdepend: [lib]
+commands:
+   adSign:
+      aliases: as
+      description: none
+      usage: /<command>

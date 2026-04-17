@@ -1,0 +1,4 @@
+# 镜像仅打包入口脚本；构建上下文不包含 craftbukkit、世界与插件，避免构建时向 daemon 传输大量文件。
+*
+!docker/
+!docker/docker-entrypoint.sh

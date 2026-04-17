@@ -1,0 +1,8 @@
+name: house
+main: house.House
+version: 1.0
+softdepend: [lib,WorldEdit]
+commands:
+  house:
+    description: none.
+    usage: /<command> ?

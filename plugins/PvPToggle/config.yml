@@ -1,0 +1,17 @@
+plugin:
+  enabled: true
+  debug: false
+  updateinterval: 2160000
+  command: pvp
+  worldguard-integration: false
+worlds:
+  world:
+    enabled: true
+    default: false
+    cooldown: 60
+    warmup: 0
+  sky:
+    enabled: true
+    default: false
+    cooldown: 60
+    warmup: 0

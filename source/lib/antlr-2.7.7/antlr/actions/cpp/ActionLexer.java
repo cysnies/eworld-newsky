@@ -1,0 +1,2504 @@
+package antlr.actions.cpp;
+
+import antlr.ActionTransInfo;
+import antlr.ByteBuffer;
+import antlr.CharBuffer;
+import antlr.CharScanner;
+import antlr.CharStreamException;
+import antlr.CharStreamIOException;
+import antlr.CodeGenerator;
+import antlr.GrammarAtom;
+import antlr.InputBuffer;
+import antlr.LexerSharedInputState;
+import antlr.NoViableAltForCharException;
+import antlr.RecognitionException;
+import antlr.RuleBlock;
+import antlr.Token;
+import antlr.TokenStream;
+import antlr.TokenStreamException;
+import antlr.TokenStreamIOException;
+import antlr.TokenStreamRecognitionException;
+import antlr.Tool;
+import antlr.collections.impl.BitSet;
+import antlr.collections.impl.Vector;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.Hashtable;
+
+public class ActionLexer extends CharScanner implements ActionLexerTokenTypes, TokenStream {
+   protected RuleBlock currentRule;
+   protected CodeGenerator generator;
+   protected int lineOffset;
+   private Tool antlrTool;
+   ActionTransInfo transInfo;
+   public static final BitSet _tokenSet_0 = new BitSet(mk_tokenSet_0());
+   public static final BitSet _tokenSet_1 = new BitSet(mk_tokenSet_1());
+   public static final BitSet _tokenSet_2 = new BitSet(mk_tokenSet_2());
+   public static final BitSet _tokenSet_3 = new BitSet(mk_tokenSet_3());
+   public static final BitSet _tokenSet_4 = new BitSet(mk_tokenSet_4());
+   public static final BitSet _tokenSet_5 = new BitSet(mk_tokenSet_5());
+   public static final BitSet _tokenSet_6 = new BitSet(mk_tokenSet_6());
+   public static final BitSet _tokenSet_7 = new BitSet(mk_tokenSet_7());
+   public static final BitSet _tokenSet_8 = new BitSet(mk_tokenSet_8());
+   public static final BitSet _tokenSet_9 = new BitSet(mk_tokenSet_9());
+   public static final BitSet _tokenSet_10 = new BitSet(mk_tokenSet_10());
+   public static final BitSet _tokenSet_11 = new BitSet(mk_tokenSet_11());
+   public static final BitSet _tokenSet_12 = new BitSet(mk_tokenSet_12());
+   public static final BitSet _tokenSet_13 = new BitSet(mk_tokenSet_13());
+   public static final BitSet _tokenSet_14 = new BitSet(mk_tokenSet_14());
+   public static final BitSet _tokenSet_15 = new BitSet(mk_tokenSet_15());
+   public static final BitSet _tokenSet_16 = new BitSet(mk_tokenSet_16());
+   public static final BitSet _tokenSet_17 = new BitSet(mk_tokenSet_17());
+   public static final BitSet _tokenSet_18 = new BitSet(mk_tokenSet_18());
+   public static final BitSet _tokenSet_19 = new BitSet(mk_tokenSet_19());
+   public static final BitSet _tokenSet_20 = new BitSet(mk_tokenSet_20());
+   public static final BitSet _tokenSet_21 = new BitSet(mk_tokenSet_21());
+   public static final BitSet _tokenSet_22 = new BitSet(mk_tokenSet_22());
+   public static final BitSet _tokenSet_23 = new BitSet(mk_tokenSet_23());
+   public static final BitSet _tokenSet_24 = new BitSet(mk_tokenSet_24());
+   public static final BitSet _tokenSet_25 = new BitSet(mk_tokenSet_25());
+   public static final BitSet _tokenSet_26 = new BitSet(mk_tokenSet_26());
+
+   public ActionLexer(String var1, RuleBlock var2, CodeGenerator var3, ActionTransInfo var4) {
+      this((Reader)(new StringReader(var1)));
+      this.currentRule = var2;
+      this.generator = var3;
+      this.transInfo = var4;
+   }
+
+   public void setLineOffset(int var1) {
+      this.setLine(var1);
+   }
+
+   public void setTool(Tool var1) {
+      this.antlrTool = var1;
+   }
+
+   public void reportError(RecognitionException var1) {
+      this.antlrTool.error("Syntax error in action: " + var1, this.getFilename(), this.getLine(), this.getColumn());
+   }
+
+   public void reportError(String var1) {
+      this.antlrTool.error(var1, this.getFilename(), this.getLine(), this.getColumn());
+   }
+
+   public void reportWarning(String var1) {
+      if (this.getFilename() == null) {
+         this.antlrTool.warning(var1);
+      } else {
+         this.antlrTool.warning(var1, this.getFilename(), this.getLine(), this.getColumn());
+      }
+
+   }
+
+   public ActionLexer(InputStream var1) {
+      this((InputBuffer)(new ByteBuffer(var1)));
+   }
+
+   public ActionLexer(Reader var1) {
+      this((InputBuffer)(new CharBuffer(var1)));
+   }
+
+   public ActionLexer(InputBuffer var1) {
+      this(new LexerSharedInputState(var1));
+   }
+
+   public ActionLexer(LexerSharedInputState var1) {
+      super(var1);
+      this.lineOffset = 0;
+      this.caseSensitiveLiterals = true;
+      this.setCaseSensitive(true);
+      this.literals = new Hashtable();
+   }
+
+   public Token nextToken() throws TokenStreamException {
+      Object var1 = null;
+
+      while(true) {
+         Object var2 = null;
+         int var3 = 0;
+         this.resetText();
+
+         try {
+            try {
+               if (this.LA(1) >= 3 && this.LA(1) <= 255) {
+                  this.mACTION(true);
+                  Token var7 = this._returnToken;
+               } else {
+                  if (this.LA(1) != '\uffff') {
+                     throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+                  }
+
+                  this.uponEOF();
+                  this._returnToken = this.makeToken(1);
+               }
+
+               if (this._returnToken != null) {
+                  var3 = this._returnToken.getType();
+                  this._returnToken.setType(var3);
+                  return this._returnToken;
+               }
+            } catch (RecognitionException var5) {
+               throw new TokenStreamRecognitionException(var5);
+            }
+         } catch (CharStreamException var6) {
+            if (var6 instanceof CharStreamIOException) {
+               throw new TokenStreamIOException(((CharStreamIOException)var6).io);
+            }
+
+            throw new TokenStreamException(var6.getMessage());
+         }
+      }
+   }
+
+   public final void mACTION(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 4;
+      int var6 = 0;
+
+      while(true) {
+         switch (this.LA(1)) {
+            case '#':
+               this.mAST_ITEM(false);
+               break;
+            case '$':
+               this.mTEXT_ITEM(false);
+               break;
+            default:
+               if (!_tokenSet_0.member(this.LA(1))) {
+                  if (var6 >= 1) {
+                     if (var1 && var3 == null && var2 != -1) {
+                        var3 = this.makeToken(var2);
+                        var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+                     }
+
+                     this._returnToken = var3;
+                     return;
+                  }
+
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+               }
+
+               this.mSTUFF(false);
+         }
+
+         ++var6;
+      }
+   }
+
+   protected final void mSTUFF(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 5;
+      switch (this.LA(1)) {
+         case '\n':
+            this.match('\n');
+            this.newline();
+            break;
+         case '"':
+            this.mSTRING(false);
+            break;
+         case '\'':
+            this.mCHAR(false);
+            break;
+         default:
+            if (this.LA(1) != '/' || this.LA(2) != '*' && this.LA(2) != '/') {
+               if (this.LA(1) == '\r' && this.LA(2) == '\n') {
+                  this.match("\r\n");
+                  this.newline();
+               } else if (this.LA(1) == '\\' && this.LA(2) == '#') {
+                  this.match('\\');
+                  this.match('#');
+                  this.text.setLength(var4);
+                  this.text.append("#");
+               } else if (this.LA(1) == '/' && _tokenSet_1.member(this.LA(2))) {
+                  this.match('/');
+                  this.match(_tokenSet_1);
+               } else if (this.LA(1) == '\r') {
+                  this.match('\r');
+                  this.newline();
+               } else {
+                  if (!_tokenSet_2.member(this.LA(1))) {
+                     throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+                  }
+
+                  this.match(_tokenSet_2);
+               }
+            } else {
+               this.mCOMMENT(false);
+            }
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mAST_ITEM(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 6;
+      Object var6 = null;
+      Token var7 = null;
+      Object var8 = null;
+      if (this.LA(1) == '#' && this.LA(2) == '(') {
+         int var12 = this.text.length();
+         this.match('#');
+         this.text.setLength(var12);
+         this.mTREE(true);
+         Token var13 = this._returnToken;
+      } else if (this.LA(1) == '#' && _tokenSet_3.member(this.LA(2))) {
+         int var11 = this.text.length();
+         this.match('#');
+         this.text.setLength(var11);
+         switch (this.LA(1)) {
+            case '\t':
+            case '\n':
+            case '\r':
+            case ' ':
+               this.mWS(false);
+               break;
+            case '\u000b':
+            case '\f':
+            case '\u000e':
+            case '\u000f':
+            case '\u0010':
+            case '\u0011':
+            case '\u0012':
+            case '\u0013':
+            case '\u0014':
+            case '\u0015':
+            case '\u0016':
+            case '\u0017':
+            case '\u0018':
+            case '\u0019':
+            case '\u001a':
+            case '\u001b':
+            case '\u001c':
+            case '\u001d':
+            case '\u001e':
+            case '\u001f':
+            case '!':
+            case '"':
+            case '#':
+            case '$':
+            case '%':
+            case '&':
+            case '\'':
+            case '(':
+            case ')':
+            case '*':
+            case '+':
+            case ',':
+            case '-':
+            case '.':
+            case '/':
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+            case ';':
+            case '<':
+            case '=':
+            case '>':
+            case '?':
+            case '@':
+            case '[':
+            case '\\':
+            case ']':
+            case '^':
+            case '`':
+            default:
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            case ':':
+            case 'A':
+            case 'B':
+            case 'C':
+            case 'D':
+            case 'E':
+            case 'F':
+            case 'G':
+            case 'H':
+            case 'I':
+            case 'J':
+            case 'K':
+            case 'L':
+            case 'M':
+            case 'N':
+            case 'O':
+            case 'P':
+            case 'Q':
+            case 'R':
+            case 'S':
+            case 'T':
+            case 'U':
+            case 'V':
+            case 'W':
+            case 'X':
+            case 'Y':
+            case 'Z':
+            case '_':
+            case 'a':
+            case 'b':
+            case 'c':
+            case 'd':
+            case 'e':
+            case 'f':
+            case 'g':
+            case 'h':
+            case 'i':
+            case 'j':
+            case 'k':
+            case 'l':
+            case 'm':
+            case 'n':
+            case 'o':
+            case 'p':
+            case 'q':
+            case 'r':
+            case 's':
+            case 't':
+            case 'u':
+            case 'v':
+            case 'w':
+            case 'x':
+            case 'y':
+            case 'z':
+         }
+
+         this.mID(true);
+         var7 = this._returnToken;
+         String var16 = var7.getText();
+         String var10 = this.generator.mapTreeId(var7.getText(), this.transInfo);
+         if (var10 != null && !var16.equals(var10)) {
+            this.text.setLength(var4);
+            this.text.append(var10);
+         } else if (var16.equals("if") || var16.equals("define") || var16.equals("ifdef") || var16.equals("ifndef") || var16.equals("else") || var16.equals("elif") || var16.equals("endif") || var16.equals("warning") || var16.equals("error") || var16.equals("ident") || var16.equals("pragma") || var16.equals("include")) {
+            this.text.setLength(var4);
+            this.text.append("#" + var16);
+         }
+
+         if (_tokenSet_4.member(this.LA(1))) {
+            this.mWS(false);
+         }
+
+         if (this.LA(1) == '=') {
+            this.mVAR_ASSIGN(false);
+         }
+      } else if (this.LA(1) == '#' && this.LA(2) == '[') {
+         int var5 = this.text.length();
+         this.match('#');
+         this.text.setLength(var5);
+         this.mAST_CONSTRUCTOR(true);
+         Token var15 = this._returnToken;
+      } else {
+         if (this.LA(1) != '#' || this.LA(2) != '#') {
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         }
+
+         this.match("##");
+         if (this.currentRule != null) {
+            String var9 = this.currentRule.getRuleName() + "_AST";
+            this.text.setLength(var4);
+            this.text.append(var9);
+            if (this.transInfo != null) {
+               this.transInfo.refRuleRoot = var9;
+            }
+         } else {
+            this.reportWarning("\"##\" not valid in this context");
+            this.text.setLength(var4);
+            this.text.append("##");
+         }
+
+         if (_tokenSet_4.member(this.LA(1))) {
+            this.mWS(false);
+         }
+
+         if (this.LA(1) == '=') {
+            this.mVAR_ASSIGN(false);
+         }
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mTEXT_ITEM(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 7;
+      Token var6 = null;
+      Token var7 = null;
+      Token var8 = null;
+      Token var9 = null;
+      Token var10 = null;
+      Token var11 = null;
+      if (this.LA(1) == '$' && this.LA(2) == 'F' && this.LA(3) == 'O') {
+         this.match("$FOLLOW");
+         if (_tokenSet_5.member(this.LA(1)) && _tokenSet_6.member(this.LA(2)) && this.LA(3) >= 3 && this.LA(3) <= 255) {
+            switch (this.LA(1)) {
+               case '\t':
+               case '\n':
+               case '\r':
+               case ' ':
+                  this.mWS(false);
+               case '(':
+                  this.match('(');
+                  this.mTEXT_ARG(true);
+                  var10 = this._returnToken;
+                  this.match(')');
+                  break;
+               default:
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+         }
+
+         String var22 = this.currentRule.getRuleName();
+         if (var10 != null) {
+            var22 = var10.getText();
+         }
+
+         String var23 = this.generator.getFOLLOWBitSet(var22, 1);
+         if (var23 == null) {
+            this.reportError("$FOLLOW(" + var22 + ")" + ": unknown rule or bad lookahead computation");
+         } else {
+            this.text.setLength(var4);
+            this.text.append(var23);
+         }
+      } else if (this.LA(1) == '$' && this.LA(2) == 'F' && this.LA(3) == 'I') {
+         this.match("$FIRST");
+         if (_tokenSet_5.member(this.LA(1)) && _tokenSet_6.member(this.LA(2)) && this.LA(3) >= 3 && this.LA(3) <= 255) {
+            switch (this.LA(1)) {
+               case '\t':
+               case '\n':
+               case '\r':
+               case ' ':
+                  this.mWS(false);
+               case '(':
+                  this.match('(');
+                  this.mTEXT_ARG(true);
+                  var11 = this._returnToken;
+                  this.match(')');
+                  break;
+               default:
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+         }
+
+         String var21 = this.currentRule.getRuleName();
+         if (var11 != null) {
+            var21 = var11.getText();
+         }
+
+         String var13 = this.generator.getFIRSTBitSet(var21, 1);
+         if (var13 == null) {
+            this.reportError("$FIRST(" + var21 + ")" + ": unknown rule or bad lookahead computation");
+         } else {
+            this.text.setLength(var4);
+            this.text.append(var13);
+         }
+      } else if (this.LA(1) == '$' && this.LA(2) == 'a') {
+         this.match("$append");
+         switch (this.LA(1)) {
+            case '\t':
+            case '\n':
+            case '\r':
+            case ' ':
+               this.mWS(false);
+            case '(':
+               this.match('(');
+               this.mTEXT_ARG(true);
+               var6 = this._returnToken;
+               this.match(')');
+               String var20 = "text += " + var6.getText();
+               this.text.setLength(var4);
+               this.text.append(var20);
+               break;
+            default:
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         }
+      } else if (this.LA(1) == '$' && this.LA(2) == 's') {
+         this.match("$set");
+         if (this.LA(1) == 'T' && this.LA(2) == 'e') {
+            this.match("Text");
+            switch (this.LA(1)) {
+               case '\t':
+               case '\n':
+               case '\r':
+               case ' ':
+                  this.mWS(false);
+               case '(':
+                  this.match('(');
+                  this.mTEXT_ARG(true);
+                  var7 = this._returnToken;
+                  this.match(')');
+                  String var19 = "{ text.erase(_begin); text += " + var7.getText() + "; }";
+                  this.text.setLength(var4);
+                  this.text.append(var19);
+                  break;
+               default:
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+         } else if (this.LA(1) == 'T' && this.LA(2) == 'o') {
+            this.match("Token");
+            switch (this.LA(1)) {
+               case '\t':
+               case '\n':
+               case '\r':
+               case ' ':
+                  this.mWS(false);
+               case '(':
+                  this.match('(');
+                  this.mTEXT_ARG(true);
+                  var8 = this._returnToken;
+                  this.match(')');
+                  String var18 = "_token = " + var8.getText();
+                  this.text.setLength(var4);
+                  this.text.append(var18);
+                  break;
+               default:
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+         } else {
+            if (this.LA(1) != 'T' || this.LA(2) != 'y') {
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+
+            this.match("Type");
+            switch (this.LA(1)) {
+               case '\t':
+               case '\n':
+               case '\r':
+               case ' ':
+                  this.mWS(false);
+               case '(':
+                  this.match('(');
+                  this.mTEXT_ARG(true);
+                  var9 = this._returnToken;
+                  this.match(')');
+                  String var12 = "_ttype = " + var9.getText();
+                  this.text.setLength(var4);
+                  this.text.append(var12);
+                  break;
+               default:
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+         }
+      } else {
+         if (this.LA(1) != '$' || this.LA(2) != 'g') {
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         }
+
+         this.match("$getText");
+         this.text.setLength(var4);
+         this.text.append("text.substr(_begin,text.length()-_begin)");
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mCOMMENT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 19;
+      if (this.LA(1) == '/' && this.LA(2) == '/') {
+         this.mSL_COMMENT(false);
+      } else {
+         if (this.LA(1) != '/' || this.LA(2) != '*') {
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         }
+
+         this.mML_COMMENT(false);
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mSTRING(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 23;
+      this.match('"');
+
+      while(true) {
+         while(this.LA(1) != '\\') {
+            if (!_tokenSet_7.member(this.LA(1))) {
+               this.match('"');
+               if (var1 && var3 == null && var2 != -1) {
+                  var3 = this.makeToken(var2);
+                  var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+               }
+
+               this._returnToken = var3;
+               return;
+            }
+
+            this.matchNot('"');
+         }
+
+         this.mESC(false);
+      }
+   }
+
+   protected final void mCHAR(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 22;
+      this.match('\'');
+      if (this.LA(1) == '\\') {
+         this.mESC(false);
+      } else {
+         if (!_tokenSet_8.member(this.LA(1))) {
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         }
+
+         this.matchNot('\'');
+      }
+
+      this.match('\'');
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mTREE(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 8;
+      Object var6 = null;
+      Object var7 = null;
+      new StringBuffer();
+      boolean var9 = false;
+      Vector var10 = new Vector(10);
+      int var5 = this.text.length();
+      this.match('(');
+      this.text.setLength(var5);
+      switch (this.LA(1)) {
+         case '\t':
+         case '\n':
+         case '\r':
+         case ' ':
+            var5 = this.text.length();
+            this.mWS(false);
+            this.text.setLength(var5);
+         case '"':
+         case '#':
+         case '(':
+         case ':':
+         case 'A':
+         case 'B':
+         case 'C':
+         case 'D':
+         case 'E':
+         case 'F':
+         case 'G':
+         case 'H':
+         case 'I':
+         case 'J':
+         case 'K':
+         case 'L':
+         case 'M':
+         case 'N':
+         case 'O':
+         case 'P':
+         case 'Q':
+         case 'R':
+         case 'S':
+         case 'T':
+         case 'U':
+         case 'V':
+         case 'W':
+         case 'X':
+         case 'Y':
+         case 'Z':
+         case '[':
+         case '_':
+         case 'a':
+         case 'b':
+         case 'c':
+         case 'd':
+         case 'e':
+         case 'f':
+         case 'g':
+         case 'h':
+         case 'i':
+         case 'j':
+         case 'k':
+         case 'l':
+         case 'm':
+         case 'n':
+         case 'o':
+         case 'p':
+         case 'q':
+         case 'r':
+         case 's':
+         case 't':
+         case 'u':
+         case 'v':
+         case 'w':
+         case 'x':
+         case 'y':
+         case 'z':
+            var5 = this.text.length();
+            this.mTREE_ELEMENT(true);
+            this.text.setLength(var5);
+            Token var19 = this._returnToken;
+            var10.appendElement(this.generator.processStringForASTConstructor(var19.getText()));
+            switch (this.LA(1)) {
+               case '\t':
+               case '\n':
+               case '\r':
+               case ' ':
+                  var5 = this.text.length();
+                  this.mWS(false);
+                  this.text.setLength(var5);
+               case ')':
+               case ',':
+                  while(this.LA(1) == ',') {
+                     var5 = this.text.length();
+                     this.match(',');
+                     this.text.setLength(var5);
+                     switch (this.LA(1)) {
+                        case '\t':
+                        case '\n':
+                        case '\r':
+                        case ' ':
+                           var5 = this.text.length();
+                           this.mWS(false);
+                           this.text.setLength(var5);
+                           break;
+                        case '\u000b':
+                        case '\f':
+                        case '\u000e':
+                        case '\u000f':
+                        case '\u0010':
+                        case '\u0011':
+                        case '\u0012':
+                        case '\u0013':
+                        case '\u0014':
+                        case '\u0015':
+                        case '\u0016':
+                        case '\u0017':
+                        case '\u0018':
+                        case '\u0019':
+                        case '\u001a':
+                        case '\u001b':
+                        case '\u001c':
+                        case '\u001d':
+                        case '\u001e':
+                        case '\u001f':
+                        case '!':
+                        case '$':
+                        case '%':
+                        case '&':
+                        case '\'':
+                        case ')':
+                        case '*':
+                        case '+':
+                        case ',':
+                        case '-':
+                        case '.':
+                        case '/':
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                        case ';':
+                        case '<':
+                        case '=':
+                        case '>':
+                        case '?':
+                        case '@':
+                        case '\\':
+                        case ']':
+                        case '^':
+                        case '`':
+                        default:
+                           throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+                        case '"':
+                        case '#':
+                        case '(':
+                        case ':':
+                        case 'A':
+                        case 'B':
+                        case 'C':
+                        case 'D':
+                        case 'E':
+                        case 'F':
+                        case 'G':
+                        case 'H':
+                        case 'I':
+                        case 'J':
+                        case 'K':
+                        case 'L':
+                        case 'M':
+                        case 'N':
+                        case 'O':
+                        case 'P':
+                        case 'Q':
+                        case 'R':
+                        case 'S':
+                        case 'T':
+                        case 'U':
+                        case 'V':
+                        case 'W':
+                        case 'X':
+                        case 'Y':
+                        case 'Z':
+                        case '[':
+                        case '_':
+                        case 'a':
+                        case 'b':
+                        case 'c':
+                        case 'd':
+                        case 'e':
+                        case 'f':
+                        case 'g':
+                        case 'h':
+                        case 'i':
+                        case 'j':
+                        case 'k':
+                        case 'l':
+                        case 'm':
+                        case 'n':
+                        case 'o':
+                        case 'p':
+                        case 'q':
+                        case 'r':
+                        case 's':
+                        case 't':
+                        case 'u':
+                        case 'v':
+                        case 'w':
+                        case 'x':
+                        case 'y':
+                        case 'z':
+                     }
+
+                     var5 = this.text.length();
+                     this.mTREE_ELEMENT(true);
+                     this.text.setLength(var5);
+                     Token var20 = this._returnToken;
+                     var10.appendElement(this.generator.processStringForASTConstructor(var20.getText()));
+                     switch (this.LA(1)) {
+                        case '\t':
+                        case '\n':
+                        case '\r':
+                        case ' ':
+                           var5 = this.text.length();
+                           this.mWS(false);
+                           this.text.setLength(var5);
+                        case ')':
+                        case ',':
+                           break;
+                        default:
+                           throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+                     }
+                  }
+
+                  this.text.setLength(var4);
+                  this.text.append(this.generator.getASTCreateString(var10));
+                  var5 = this.text.length();
+                  this.match(')');
+                  this.text.setLength(var5);
+                  if (var1 && var3 == null && var2 != -1) {
+                     var3 = this.makeToken(var2);
+                     var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+                  }
+
+                  this._returnToken = var3;
+                  return;
+               default:
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+         case '\u000b':
+         case '\f':
+         case '\u000e':
+         case '\u000f':
+         case '\u0010':
+         case '\u0011':
+         case '\u0012':
+         case '\u0013':
+         case '\u0014':
+         case '\u0015':
+         case '\u0016':
+         case '\u0017':
+         case '\u0018':
+         case '\u0019':
+         case '\u001a':
+         case '\u001b':
+         case '\u001c':
+         case '\u001d':
+         case '\u001e':
+         case '\u001f':
+         case '!':
+         case '$':
+         case '%':
+         case '&':
+         case '\'':
+         case ')':
+         case '*':
+         case '+':
+         case ',':
+         case '-':
+         case '.':
+         case '/':
+         case '0':
+         case '1':
+         case '2':
+         case '3':
+         case '4':
+         case '5':
+         case '6':
+         case '7':
+         case '8':
+         case '9':
+         case ';':
+         case '<':
+         case '=':
+         case '>':
+         case '?':
+         case '@':
+         case '\\':
+         case ']':
+         case '^':
+         case '`':
+         default:
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+      }
+   }
+
+   protected final void mWS(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 28;
+      int var6 = 0;
+
+      while(true) {
+         if (this.LA(1) == '\r' && this.LA(2) == '\n') {
+            this.match('\r');
+            this.match('\n');
+            this.newline();
+         } else if (this.LA(1) == ' ') {
+            this.match(' ');
+         } else if (this.LA(1) == '\t') {
+            this.match('\t');
+         } else if (this.LA(1) == '\r') {
+            this.match('\r');
+            this.newline();
+         } else {
+            if (this.LA(1) != '\n') {
+               if (var6 >= 1) {
+                  if (var1 && var3 == null && var2 != -1) {
+                     var3 = this.makeToken(var2);
+                     var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+                  }
+
+                  this._returnToken = var3;
+                  return;
+               }
+
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+
+            this.match('\n');
+            this.newline();
+         }
+
+         ++var6;
+      }
+   }
+
+   protected final void mID(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 17;
+      switch (this.LA(1)) {
+         case ':':
+            this.match("::");
+            break;
+         case ';':
+         case '<':
+         case '=':
+         case '>':
+         case '?':
+         case '@':
+         case '[':
+         case '\\':
+         case ']':
+         case '^':
+         case '`':
+         default:
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         case 'A':
+         case 'B':
+         case 'C':
+         case 'D':
+         case 'E':
+         case 'F':
+         case 'G':
+         case 'H':
+         case 'I':
+         case 'J':
+         case 'K':
+         case 'L':
+         case 'M':
+         case 'N':
+         case 'O':
+         case 'P':
+         case 'Q':
+         case 'R':
+         case 'S':
+         case 'T':
+         case 'U':
+         case 'V':
+         case 'W':
+         case 'X':
+         case 'Y':
+         case 'Z':
+            this.matchRange('A', 'Z');
+            break;
+         case '_':
+            this.match('_');
+            break;
+         case 'a':
+         case 'b':
+         case 'c':
+         case 'd':
+         case 'e':
+         case 'f':
+         case 'g':
+         case 'h':
+         case 'i':
+         case 'j':
+         case 'k':
+         case 'l':
+         case 'm':
+         case 'n':
+         case 'o':
+         case 'p':
+         case 'q':
+         case 'r':
+         case 's':
+         case 't':
+         case 'u':
+         case 'v':
+         case 'w':
+         case 'x':
+         case 'y':
+         case 'z':
+            this.matchRange('a', 'z');
+      }
+
+      while(_tokenSet_9.member(this.LA(1))) {
+         switch (this.LA(1)) {
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+               this.matchRange('0', '9');
+               break;
+            case ':':
+               this.match("::");
+               break;
+            case ';':
+            case '<':
+            case '=':
+            case '>':
+            case '?':
+            case '@':
+            case '[':
+            case '\\':
+            case ']':
+            case '^':
+            case '`':
+            default:
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            case 'A':
+            case 'B':
+            case 'C':
+            case 'D':
+            case 'E':
+            case 'F':
+            case 'G':
+            case 'H':
+            case 'I':
+            case 'J':
+            case 'K':
+            case 'L':
+            case 'M':
+            case 'N':
+            case 'O':
+            case 'P':
+            case 'Q':
+            case 'R':
+            case 'S':
+            case 'T':
+            case 'U':
+            case 'V':
+            case 'W':
+            case 'X':
+            case 'Y':
+            case 'Z':
+               this.matchRange('A', 'Z');
+               break;
+            case '_':
+               this.match('_');
+               break;
+            case 'a':
+            case 'b':
+            case 'c':
+            case 'd':
+            case 'e':
+            case 'f':
+            case 'g':
+            case 'h':
+            case 'i':
+            case 'j':
+            case 'k':
+            case 'l':
+            case 'm':
+            case 'n':
+            case 'o':
+            case 'p':
+            case 'q':
+            case 'r':
+            case 's':
+            case 't':
+            case 'u':
+            case 'v':
+            case 'w':
+            case 'x':
+            case 'y':
+            case 'z':
+               this.matchRange('a', 'z');
+         }
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mVAR_ASSIGN(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 18;
+      this.match('=');
+      if (this.LA(1) != '=' && this.transInfo != null && this.transInfo.refRuleRoot != null) {
+         this.transInfo.assignToRoot = true;
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mAST_CONSTRUCTOR(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 10;
+      Object var6 = null;
+      Token var7 = null;
+      int var5 = this.text.length();
+      this.match('[');
+      this.text.setLength(var5);
+      switch (this.LA(1)) {
+         case '\t':
+         case '\n':
+         case '\r':
+         case ' ':
+            var5 = this.text.length();
+            this.mWS(false);
+            this.text.setLength(var5);
+         case '"':
+         case '#':
+         case '(':
+         case '0':
+         case '1':
+         case '2':
+         case '3':
+         case '4':
+         case '5':
+         case '6':
+         case '7':
+         case '8':
+         case '9':
+         case ':':
+         case 'A':
+         case 'B':
+         case 'C':
+         case 'D':
+         case 'E':
+         case 'F':
+         case 'G':
+         case 'H':
+         case 'I':
+         case 'J':
+         case 'K':
+         case 'L':
+         case 'M':
+         case 'N':
+         case 'O':
+         case 'P':
+         case 'Q':
+         case 'R':
+         case 'S':
+         case 'T':
+         case 'U':
+         case 'V':
+         case 'W':
+         case 'X':
+         case 'Y':
+         case 'Z':
+         case '[':
+         case '_':
+         case 'a':
+         case 'b':
+         case 'c':
+         case 'd':
+         case 'e':
+         case 'f':
+         case 'g':
+         case 'h':
+         case 'i':
+         case 'j':
+         case 'k':
+         case 'l':
+         case 'm':
+         case 'n':
+         case 'o':
+         case 'p':
+         case 'q':
+         case 'r':
+         case 's':
+         case 't':
+         case 'u':
+         case 'v':
+         case 'w':
+         case 'x':
+         case 'y':
+         case 'z':
+            var5 = this.text.length();
+            this.mAST_CTOR_ELEMENT(true);
+            this.text.setLength(var5);
+            Token var17 = this._returnToken;
+            switch (this.LA(1)) {
+               case '\t':
+               case '\n':
+               case '\r':
+               case ' ':
+                  var5 = this.text.length();
+                  this.mWS(false);
+                  this.text.setLength(var5);
+               case ',':
+               case ']':
+                  switch (this.LA(1)) {
+                     case ',':
+                        var5 = this.text.length();
+                        this.match(',');
+                        this.text.setLength(var5);
+                        label39:
+                        switch (this.LA(1)) {
+                           case '\t':
+                           case '\n':
+                           case '\r':
+                           case ' ':
+                              var5 = this.text.length();
+                              this.mWS(false);
+                              this.text.setLength(var5);
+                           case '"':
+                           case '#':
+                           case '(':
+                           case '0':
+                           case '1':
+                           case '2':
+                           case '3':
+                           case '4':
+                           case '5':
+                           case '6':
+                           case '7':
+                           case '8':
+                           case '9':
+                           case ':':
+                           case 'A':
+                           case 'B':
+                           case 'C':
+                           case 'D':
+                           case 'E':
+                           case 'F':
+                           case 'G':
+                           case 'H':
+                           case 'I':
+                           case 'J':
+                           case 'K':
+                           case 'L':
+                           case 'M':
+                           case 'N':
+                           case 'O':
+                           case 'P':
+                           case 'Q':
+                           case 'R':
+                           case 'S':
+                           case 'T':
+                           case 'U':
+                           case 'V':
+                           case 'W':
+                           case 'X':
+                           case 'Y':
+                           case 'Z':
+                           case '[':
+                           case '_':
+                           case 'a':
+                           case 'b':
+                           case 'c':
+                           case 'd':
+                           case 'e':
+                           case 'f':
+                           case 'g':
+                           case 'h':
+                           case 'i':
+                           case 'j':
+                           case 'k':
+                           case 'l':
+                           case 'm':
+                           case 'n':
+                           case 'o':
+                           case 'p':
+                           case 'q':
+                           case 'r':
+                           case 's':
+                           case 't':
+                           case 'u':
+                           case 'v':
+                           case 'w':
+                           case 'x':
+                           case 'y':
+                           case 'z':
+                              var5 = this.text.length();
+                              this.mAST_CTOR_ELEMENT(true);
+                              this.text.setLength(var5);
+                              var7 = this._returnToken;
+                              switch (this.LA(1)) {
+                                 case '\t':
+                                 case '\n':
+                                 case '\r':
+                                 case ' ':
+                                    var5 = this.text.length();
+                                    this.mWS(false);
+                                    this.text.setLength(var5);
+                                 case ']':
+                                    break label39;
+                                 default:
+                                    throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+                              }
+                           case '\u000b':
+                           case '\f':
+                           case '\u000e':
+                           case '\u000f':
+                           case '\u0010':
+                           case '\u0011':
+                           case '\u0012':
+                           case '\u0013':
+                           case '\u0014':
+                           case '\u0015':
+                           case '\u0016':
+                           case '\u0017':
+                           case '\u0018':
+                           case '\u0019':
+                           case '\u001a':
+                           case '\u001b':
+                           case '\u001c':
+                           case '\u001d':
+                           case '\u001e':
+                           case '\u001f':
+                           case '!':
+                           case '$':
+                           case '%':
+                           case '&':
+                           case '\'':
+                           case ')':
+                           case '*':
+                           case '+':
+                           case ',':
+                           case '-':
+                           case '.':
+                           case '/':
+                           case ';':
+                           case '<':
+                           case '=':
+                           case '>':
+                           case '?':
+                           case '@':
+                           case '\\':
+                           case ']':
+                           case '^':
+                           case '`':
+                           default:
+                              throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+                        }
+                     case ']':
+                        var5 = this.text.length();
+                        this.match(']');
+                        this.text.setLength(var5);
+                        String var8 = this.generator.processStringForASTConstructor(var17.getText());
+                        if (var7 != null) {
+                           var8 = var8 + "," + var7.getText();
+                        }
+
+                        this.text.setLength(var4);
+                        this.text.append(this.generator.getASTCreateString((GrammarAtom)null, var8));
+                        if (var1 && var3 == null && var2 != -1) {
+                           var3 = this.makeToken(var2);
+                           var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+                        }
+
+                        this._returnToken = var3;
+                        return;
+                     default:
+                        throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+                  }
+               default:
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+         case '\u000b':
+         case '\f':
+         case '\u000e':
+         case '\u000f':
+         case '\u0010':
+         case '\u0011':
+         case '\u0012':
+         case '\u0013':
+         case '\u0014':
+         case '\u0015':
+         case '\u0016':
+         case '\u0017':
+         case '\u0018':
+         case '\u0019':
+         case '\u001a':
+         case '\u001b':
+         case '\u001c':
+         case '\u001d':
+         case '\u001e':
+         case '\u001f':
+         case '!':
+         case '$':
+         case '%':
+         case '&':
+         case '\'':
+         case ')':
+         case '*':
+         case '+':
+         case ',':
+         case '-':
+         case '.':
+         case '/':
+         case ';':
+         case '<':
+         case '=':
+         case '>':
+         case '?':
+         case '@':
+         case '\\':
+         case ']':
+         case '^':
+         case '`':
+         default:
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+      }
+   }
+
+   protected final void mTEXT_ARG(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 13;
+      switch (this.LA(1)) {
+         case '\t':
+         case '\n':
+         case '\r':
+         case ' ':
+            this.mWS(false);
+         case '"':
+         case '$':
+         case '\'':
+         case '+':
+         case '0':
+         case '1':
+         case '2':
+         case '3':
+         case '4':
+         case '5':
+         case '6':
+         case '7':
+         case '8':
+         case '9':
+         case ':':
+         case 'A':
+         case 'B':
+         case 'C':
+         case 'D':
+         case 'E':
+         case 'F':
+         case 'G':
+         case 'H':
+         case 'I':
+         case 'J':
+         case 'K':
+         case 'L':
+         case 'M':
+         case 'N':
+         case 'O':
+         case 'P':
+         case 'Q':
+         case 'R':
+         case 'S':
+         case 'T':
+         case 'U':
+         case 'V':
+         case 'W':
+         case 'X':
+         case 'Y':
+         case 'Z':
+         case '_':
+         case 'a':
+         case 'b':
+         case 'c':
+         case 'd':
+         case 'e':
+         case 'f':
+         case 'g':
+         case 'h':
+         case 'i':
+         case 'j':
+         case 'k':
+         case 'l':
+         case 'm':
+         case 'n':
+         case 'o':
+         case 'p':
+         case 'q':
+         case 'r':
+         case 's':
+         case 't':
+         case 'u':
+         case 'v':
+         case 'w':
+         case 'x':
+         case 'y':
+         case 'z':
+            int var6 = 0;
+
+            for(; _tokenSet_10.member(this.LA(1)) && this.LA(2) >= 3 && this.LA(2) <= 255; ++var6) {
+               this.mTEXT_ARG_ELEMENT(false);
+               if (_tokenSet_4.member(this.LA(1)) && _tokenSet_11.member(this.LA(2))) {
+                  this.mWS(false);
+               } else if (!_tokenSet_11.member(this.LA(1))) {
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+               }
+            }
+
+            if (var6 >= 1) {
+               if (var1 && var3 == null && var2 != -1) {
+                  var3 = this.makeToken(var2);
+                  var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+               }
+
+               this._returnToken = var3;
+               return;
+            } else {
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+         case '\u000b':
+         case '\f':
+         case '\u000e':
+         case '\u000f':
+         case '\u0010':
+         case '\u0011':
+         case '\u0012':
+         case '\u0013':
+         case '\u0014':
+         case '\u0015':
+         case '\u0016':
+         case '\u0017':
+         case '\u0018':
+         case '\u0019':
+         case '\u001a':
+         case '\u001b':
+         case '\u001c':
+         case '\u001d':
+         case '\u001e':
+         case '\u001f':
+         case '!':
+         case '#':
+         case '%':
+         case '&':
+         case '(':
+         case ')':
+         case '*':
+         case ',':
+         case '-':
+         case '.':
+         case '/':
+         case ';':
+         case '<':
+         case '=':
+         case '>':
+         case '?':
+         case '@':
+         case '[':
+         case '\\':
+         case ']':
+         case '^':
+         case '`':
+         default:
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+      }
+   }
+
+   protected final void mTREE_ELEMENT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 9;
+      Object var6 = null;
+      switch (this.LA(1)) {
+         case '"':
+            this.mSTRING(false);
+            break;
+         case '#':
+         case '$':
+         case '%':
+         case '&':
+         case '\'':
+         case ')':
+         case '*':
+         case '+':
+         case ',':
+         case '-':
+         case '.':
+         case '/':
+         case '0':
+         case '1':
+         case '2':
+         case '3':
+         case '4':
+         case '5':
+         case '6':
+         case '7':
+         case '8':
+         case '9':
+         case ';':
+         case '<':
+         case '=':
+         case '>':
+         case '?':
+         case '@':
+         case '\\':
+         case ']':
+         case '^':
+         case '`':
+         default:
+            if (this.LA(1) == '#' && this.LA(2) == '(') {
+               int var10 = this.text.length();
+               this.match('#');
+               this.text.setLength(var10);
+               this.mTREE(false);
+            } else if (this.LA(1) == '#' && this.LA(2) == '[') {
+               int var9 = this.text.length();
+               this.match('#');
+               this.text.setLength(var9);
+               this.mAST_CONSTRUCTOR(false);
+            } else if (this.LA(1) == '#' && _tokenSet_12.member(this.LA(2))) {
+               int var5 = this.text.length();
+               this.match('#');
+               this.text.setLength(var5);
+               boolean var7 = this.mID_ELEMENT(true);
+               Token var11 = this._returnToken;
+               if (!var7) {
+                  String var12 = this.generator.mapTreeId(var11.getText(), (ActionTransInfo)null);
+                  if (var12 != null) {
+                     this.text.setLength(var4);
+                     this.text.append(var12);
+                  }
+               }
+            } else {
+               if (this.LA(1) != '#' || this.LA(2) != '#') {
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+               }
+
+               this.match("##");
+               if (this.currentRule != null) {
+                  String var8 = this.currentRule.getRuleName() + "_AST";
+                  this.text.setLength(var4);
+                  this.text.append(var8);
+               } else {
+                  this.reportError("\"##\" not valid in this context");
+                  this.text.setLength(var4);
+                  this.text.append("##");
+               }
+            }
+            break;
+         case '(':
+            this.mTREE(false);
+            break;
+         case ':':
+         case 'A':
+         case 'B':
+         case 'C':
+         case 'D':
+         case 'E':
+         case 'F':
+         case 'G':
+         case 'H':
+         case 'I':
+         case 'J':
+         case 'K':
+         case 'L':
+         case 'M':
+         case 'N':
+         case 'O':
+         case 'P':
+         case 'Q':
+         case 'R':
+         case 'S':
+         case 'T':
+         case 'U':
+         case 'V':
+         case 'W':
+         case 'X':
+         case 'Y':
+         case 'Z':
+         case '_':
+         case 'a':
+         case 'b':
+         case 'c':
+         case 'd':
+         case 'e':
+         case 'f':
+         case 'g':
+         case 'h':
+         case 'i':
+         case 'j':
+         case 'k':
+         case 'l':
+         case 'm':
+         case 'n':
+         case 'o':
+         case 'p':
+         case 'q':
+         case 'r':
+         case 's':
+         case 't':
+         case 'u':
+         case 'v':
+         case 'w':
+         case 'x':
+         case 'y':
+         case 'z':
+            this.mID_ELEMENT(false);
+            break;
+         case '[':
+            this.mAST_CONSTRUCTOR(false);
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final boolean mID_ELEMENT(boolean param1) throws RecognitionException, CharStreamException, TokenStreamException {
+      // $FF: Couldn't be decompiled
+   }
+
+   protected final void mAST_CTOR_ELEMENT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 11;
+      if (this.LA(1) == '"' && this.LA(2) >= 3 && this.LA(2) <= 255 && this.LA(3) >= 3 && this.LA(3) <= 255) {
+         this.mSTRING(false);
+      } else if (_tokenSet_19.member(this.LA(1)) && this.LA(2) >= 3 && this.LA(2) <= 255) {
+         this.mTREE_ELEMENT(false);
+      } else {
+         if (this.LA(1) < '0' || this.LA(1) > '9') {
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         }
+
+         this.mINT(false);
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mINT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 26;
+
+      int var6;
+      for(var6 = 0; this.LA(1) >= '0' && this.LA(1) <= '9'; ++var6) {
+         this.mDIGIT(false);
+      }
+
+      if (var6 >= 1) {
+         if (var1 && var3 == null && var2 != -1) {
+            var3 = this.makeToken(var2);
+            var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+         }
+
+         this._returnToken = var3;
+      } else {
+         throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+      }
+   }
+
+   protected final void mARG(boolean param1) throws RecognitionException, CharStreamException, TokenStreamException {
+      // $FF: Couldn't be decompiled
+   }
+
+   protected final void mTEXT_ARG_ELEMENT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 14;
+      switch (this.LA(1)) {
+         case '"':
+            this.mSTRING(false);
+            break;
+         case '#':
+         case '%':
+         case '&':
+         case '(':
+         case ')':
+         case '*':
+         case ',':
+         case '-':
+         case '.':
+         case '/':
+         case ';':
+         case '<':
+         case '=':
+         case '>':
+         case '?':
+         case '@':
+         case '[':
+         case '\\':
+         case ']':
+         case '^':
+         case '`':
+         default:
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         case '$':
+            this.mTEXT_ITEM(false);
+            break;
+         case '\'':
+            this.mCHAR(false);
+            break;
+         case '+':
+            this.match('+');
+            break;
+         case '0':
+         case '1':
+         case '2':
+         case '3':
+         case '4':
+         case '5':
+         case '6':
+         case '7':
+         case '8':
+         case '9':
+            this.mINT_OR_FLOAT(false);
+            break;
+         case ':':
+         case 'A':
+         case 'B':
+         case 'C':
+         case 'D':
+         case 'E':
+         case 'F':
+         case 'G':
+         case 'H':
+         case 'I':
+         case 'J':
+         case 'K':
+         case 'L':
+         case 'M':
+         case 'N':
+         case 'O':
+         case 'P':
+         case 'Q':
+         case 'R':
+         case 'S':
+         case 'T':
+         case 'U':
+         case 'V':
+         case 'W':
+         case 'X':
+         case 'Y':
+         case 'Z':
+         case '_':
+         case 'a':
+         case 'b':
+         case 'c':
+         case 'd':
+         case 'e':
+         case 'f':
+         case 'g':
+         case 'h':
+         case 'i':
+         case 'j':
+         case 'k':
+         case 'l':
+         case 'm':
+         case 'n':
+         case 'o':
+         case 'p':
+         case 'q':
+         case 'r':
+         case 's':
+         case 't':
+         case 'u':
+         case 'v':
+         case 'w':
+         case 'x':
+         case 'y':
+         case 'z':
+            this.mTEXT_ARG_ID_ELEMENT(false);
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mTEXT_ARG_ID_ELEMENT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 15;
+      Object var6 = null;
+      this.mID(true);
+      Token var12 = this._returnToken;
+      if (_tokenSet_4.member(this.LA(1)) && _tokenSet_22.member(this.LA(2))) {
+         int var5 = this.text.length();
+         this.mWS(false);
+         this.text.setLength(var5);
+      } else if (!_tokenSet_22.member(this.LA(1))) {
+         throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+      }
+
+      label115:
+      switch (this.LA(1)) {
+         case '(':
+            this.match('(');
+            if (_tokenSet_4.member(this.LA(1)) && _tokenSet_23.member(this.LA(2)) && this.LA(3) >= 3 && this.LA(3) <= 255) {
+               int var10 = this.text.length();
+               this.mWS(false);
+               this.text.setLength(var10);
+            } else if (!_tokenSet_23.member(this.LA(1)) || this.LA(2) < 3 || this.LA(2) > 255) {
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+
+            while(_tokenSet_24.member(this.LA(1)) && this.LA(2) >= 3 && this.LA(2) <= 255 && this.LA(3) >= 3 && this.LA(3) <= 255) {
+               this.mTEXT_ARG(false);
+
+               while(this.LA(1) == ',') {
+                  this.match(',');
+                  this.mTEXT_ARG(false);
+               }
+            }
+
+            switch (this.LA(1)) {
+               case '\t':
+               case '\n':
+               case '\r':
+               case ' ':
+                  int var11 = this.text.length();
+                  this.mWS(false);
+                  this.text.setLength(var11);
+               case ')':
+                  this.match(')');
+                  break label115;
+               default:
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+         case '-':
+            this.match("->");
+            this.mTEXT_ARG_ID_ELEMENT(false);
+            break;
+         case '.':
+            this.match('.');
+            this.mTEXT_ARG_ID_ELEMENT(false);
+            break;
+         case '[':
+            int var7;
+            for(var7 = 0; this.LA(1) == '['; ++var7) {
+               this.match('[');
+               if (_tokenSet_4.member(this.LA(1)) && _tokenSet_24.member(this.LA(2)) && this.LA(3) >= 3 && this.LA(3) <= 255) {
+                  int var8 = this.text.length();
+                  this.mWS(false);
+                  this.text.setLength(var8);
+               } else if (!_tokenSet_24.member(this.LA(1)) || this.LA(2) < 3 || this.LA(2) > 255 || this.LA(3) < 3 || this.LA(3) > 255) {
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+               }
+
+               this.mTEXT_ARG(false);
+               switch (this.LA(1)) {
+                  case '\t':
+                  case '\n':
+                  case '\r':
+                  case ' ':
+                     int var9 = this.text.length();
+                     this.mWS(false);
+                     this.text.setLength(var9);
+                  case ']':
+                     this.match(']');
+                     break;
+                  default:
+                     throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+               }
+            }
+
+            if (var7 < 1) {
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+            break;
+         default:
+            if (this.LA(1) == ':' && this.LA(2) == ':' && _tokenSet_12.member(this.LA(3))) {
+               this.match("::");
+               this.mTEXT_ARG_ID_ELEMENT(false);
+            } else if (!_tokenSet_11.member(this.LA(1))) {
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mINT_OR_FLOAT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 27;
+
+      int var6;
+      for(var6 = 0; this.LA(1) >= '0' && this.LA(1) <= '9' && _tokenSet_25.member(this.LA(2)); ++var6) {
+         this.mDIGIT(false);
+      }
+
+      if (var6 < 1) {
+         throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+      } else {
+         if (this.LA(1) == 'L' && _tokenSet_26.member(this.LA(2))) {
+            this.match('L');
+         } else if (this.LA(1) == 'l' && _tokenSet_26.member(this.LA(2))) {
+            this.match('l');
+         } else if (this.LA(1) == '.') {
+            this.match('.');
+
+            while(this.LA(1) >= '0' && this.LA(1) <= '9' && _tokenSet_26.member(this.LA(2))) {
+               this.mDIGIT(false);
+            }
+         } else if (!_tokenSet_26.member(this.LA(1))) {
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         }
+
+         if (var1 && var3 == null && var2 != -1) {
+            var3 = this.makeToken(var2);
+            var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+         }
+
+         this._returnToken = var3;
+      }
+   }
+
+   protected final void mSL_COMMENT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 20;
+      this.match("//");
+
+      while(this.LA(1) != '\n' && this.LA(1) != '\r' && this.LA(1) >= 3 && this.LA(1) <= 255 && this.LA(2) >= 3 && this.LA(2) <= 255) {
+         this.matchNot('\uffff');
+      }
+
+      if (this.LA(1) == '\r' && this.LA(2) == '\n') {
+         this.match("\r\n");
+      } else if (this.LA(1) == '\n') {
+         this.match('\n');
+      } else {
+         if (this.LA(1) != '\r') {
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+         }
+
+         this.match('\r');
+      }
+
+      this.newline();
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mML_COMMENT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 21;
+      this.match("/*");
+
+      while(this.LA(1) != '*' || this.LA(2) != '/') {
+         if (this.LA(1) == '\r' && this.LA(2) == '\n' && this.LA(3) >= 3 && this.LA(3) <= 255) {
+            this.match('\r');
+            this.match('\n');
+            this.newline();
+         } else if (this.LA(1) == '\r' && this.LA(2) >= 3 && this.LA(2) <= 255 && this.LA(3) >= 3 && this.LA(3) <= 255) {
+            this.match('\r');
+            this.newline();
+         } else if (this.LA(1) == '\n' && this.LA(2) >= 3 && this.LA(2) <= 255 && this.LA(3) >= 3 && this.LA(3) <= 255) {
+            this.match('\n');
+            this.newline();
+         } else {
+            if (this.LA(1) < 3 || this.LA(1) > 255 || this.LA(2) < 3 || this.LA(2) > 255 || this.LA(3) < 3 || this.LA(3) > 255) {
+               break;
+            }
+
+            this.matchNot('\uffff');
+         }
+      }
+
+      this.match("*/");
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mESC(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 24;
+      this.match('\\');
+      switch (this.LA(1)) {
+         case '"':
+            this.match('"');
+            break;
+         case '\'':
+            this.match('\'');
+            break;
+         case '0':
+         case '1':
+         case '2':
+         case '3':
+            this.matchRange('0', '3');
+            if (this.LA(1) >= '0' && this.LA(1) <= '9' && this.LA(2) >= 3 && this.LA(2) <= 255) {
+               this.mDIGIT(false);
+               if (this.LA(1) >= '0' && this.LA(1) <= '9' && this.LA(2) >= 3 && this.LA(2) <= 255) {
+                  this.mDIGIT(false);
+                  break;
+               }
+
+               if (this.LA(1) < 3 || this.LA(1) > 255) {
+                  throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+               }
+               break;
+            }
+
+            if (this.LA(1) < 3 || this.LA(1) > 255) {
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+            break;
+         case '4':
+         case '5':
+         case '6':
+         case '7':
+            this.matchRange('4', '7');
+            if (this.LA(1) >= '0' && this.LA(1) <= '9' && this.LA(2) >= 3 && this.LA(2) <= 255) {
+               this.mDIGIT(false);
+               break;
+            }
+
+            if (this.LA(1) < 3 || this.LA(1) > 255) {
+               throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+            }
+            break;
+         case '\\':
+            this.match('\\');
+            break;
+         case 'b':
+            this.match('b');
+            break;
+         case 'f':
+            this.match('f');
+            break;
+         case 'n':
+            this.match('n');
+            break;
+         case 'r':
+            this.match('r');
+            break;
+         case 't':
+            this.match('t');
+            break;
+         case 'v':
+            this.match('v');
+            break;
+         default:
+            throw new NoViableAltForCharException(this.LA(1), this.getFilename(), this.getLine(), this.getColumn());
+      }
+
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   protected final void mDIGIT(boolean var1) throws RecognitionException, CharStreamException, TokenStreamException {
+      Token var3 = null;
+      int var4 = this.text.length();
+      byte var2 = 25;
+      this.matchRange('0', '9');
+      if (var1 && var3 == null && var2 != -1) {
+         var3 = this.makeToken(var2);
+         var3.setText(new String(this.text.getBuffer(), var4, this.text.length() - var4));
+      }
+
+      this._returnToken = var3;
+   }
+
+   private static final long[] mk_tokenSet_0() {
+      long[] var0 = new long[8];
+      var0[0] = -103079215112L;
+
+      for(int var1 = 1; var1 <= 3; ++var1) {
+         var0[var1] = -1L;
+      }
+
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_1() {
+      long[] var0 = new long[8];
+      var0[0] = -145135534866440L;
+
+      for(int var1 = 1; var1 <= 3; ++var1) {
+         var0[var1] = -1L;
+      }
+
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_2() {
+      long[] var0 = new long[8];
+      var0[0] = -141407503262728L;
+
+      for(int var1 = 1; var1 <= 3; ++var1) {
+         var0[var1] = -1L;
+      }
+
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_3() {
+      long[] var0 = new long[]{288230380446688768L, 576460745995190270L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_4() {
+      long[] var0 = new long[]{4294977024L, 0L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_5() {
+      long[] var0 = new long[]{1103806604800L, 0L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_6() {
+      long[] var0 = new long[]{576189812881499648L, 576460745995190270L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_7() {
+      long[] var0 = new long[8];
+      var0[0] = -17179869192L;
+      var0[1] = -268435457L;
+
+      for(int var1 = 2; var1 <= 3; ++var1) {
+         var0[var1] = -1L;
+      }
+
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_8() {
+      long[] var0 = new long[8];
+      var0[0] = -549755813896L;
+      var0[1] = -268435457L;
+
+      for(int var1 = 2; var1 <= 3; ++var1) {
+         var0[var1] = -1L;
+      }
+
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_9() {
+      long[] var0 = new long[]{576179277326712832L, 576460745995190270L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_10() {
+      long[] var0 = new long[]{576188709074894848L, 576460745995190270L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_11() {
+      long[] var0 = new long[]{576208504579171840L, 576460746532061182L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_12() {
+      long[] var0 = new long[]{288230376151711744L, 576460745995190270L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_13() {
+      long[] var0 = new long[]{3747275269732312576L, 671088640L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_14() {
+      long[] var0 = new long[8];
+      var0[0] = -4611686018427387912L;
+
+      for(int var1 = 1; var1 <= 3; ++var1) {
+         var0[var1] = -1L;
+      }
+
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_15() {
+      long[] var0 = new long[]{576183181451994624L, 576460746129407998L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_16() {
+      long[] var0 = new long[]{2306051920717948416L, 536870912L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_17() {
+      long[] var0 = new long[]{2305843013508670976L, 0L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_18() {
+      long[] var0 = new long[]{208911504254464L, 536870912L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_19() {
+      long[] var0 = new long[]{288231527202947072L, 576460746129407998L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_20() {
+      long[] var0 = new long[]{189120294954496L, 0L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_21() {
+      long[] var0 = new long[]{576370098428716544L, 576460746129407998L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_22() {
+      long[] var0 = new long[]{576315157207066112L, 576460746666278910L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_23() {
+      long[] var0 = new long[]{576190912393127424L, 576460745995190270L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_24() {
+      long[] var0 = new long[]{576188713369871872L, 576460745995190270L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_25() {
+      long[] var0 = new long[]{576459193230304768L, 576460746532061182L, 0L, 0L, 0L};
+      return var0;
+   }
+
+   private static final long[] mk_tokenSet_26() {
+      long[] var0 = new long[]{576388824486127104L, 576460746532061182L, 0L, 0L, 0L};
+      return var0;
+   }
+}

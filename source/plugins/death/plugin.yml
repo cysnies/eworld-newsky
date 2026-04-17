@@ -1,0 +1,8 @@
+name: death
+main: death.Death
+version: 1.0
+softdepend: [lib]
+commands:
+  death:
+    description: none.
+    usage: /<command> ?

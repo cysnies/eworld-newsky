@@ -1,0 +1,8 @@
+name: stops
+main: stops.Main
+version: 1.0
+softdepend: [lib]
+commands:
+  stops:
+    description: none.
+    usage: /<command> ?

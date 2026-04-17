@@ -1,0 +1,473 @@
+# 当命令有冲突时添加一个e前缀 (/name:home, /name:help, etc.)
+name: Essentials
+main: com.earth2me.essentials.Essentials
+# 写给开发者: 下面的这几行请勿修改,否则会崩溃.          此文本由 白宝石小组_大刘 制作
+version: Pre2.11.1.2
+website: http://tiny.cc/EssentialsCommands
+description: Provides an essential, core set of commands for Bukkit.
+authors: [Zenexer, ementalo, Aelux, Brettflan, KimKandor, snowleo, ceulemans, Xeology, KHobbits, md_5, Iaccidentally]
+commands:
+  afk:
+    description: 设置为暂离状态.
+    usage: /<command> [player]
+    aliases: [eafk]
+  antioch:
+    description: 在目标位置放置一个点燃的TNT.
+    usage: /<command> [文本]
+    aliases: [eantioch,grenade,egrenade,tnt,etnt]
+  back:
+    description: 回到你上次传送(tp/spawn/warp)的地方.
+    usage: /<command>
+    aliases: [eback,return,ereturn]
+  backup:
+    description: 进行备份.
+    usage: /<command>
+    aliases: [ebackup]
+  balance:
+    description: 查看玩家拥有的现金,不输入默认为自己.
+    usage: /<command> [玩家]
+    aliases: [bal,ebal,ebalance,money,emoney]
+  balancetop:
+    description: 查看服务器财富榜.
+    usage: /<command> <页数>
+    aliases: [ebalancetop,baltop,ebaltop]
+  ban:
+    description: 封禁一个玩家.
+    usage: /<command> <玩家> [理由]
+    aliases: [eban]
+  banip:
+    description: 封禁一个玩家的IP地址.
+    usage: /<command> <IP地址>
+    aliases: [ebanip]
+  book:
+    description: 允许打开和编辑一本书.
+    usage: /<command> [标题|作者 [名称]]
+    aliases: [ebook]
+  break:
+    description: 破坏掉你正在看的方块.
+    usage: /<command>
+    aliases: [ebreak]
+  broadcast:
+    description: 发送一个全服广播.
+    usage: /<command> <文本>
+    aliases: [bc,ebc,bcast,ebcast,ebroadcast,shout,eshout]
+  bigtree:
+    description: 在你的视野内生成一颗大树.
+    usage: /<command> <tree|redwood|jungle>
+    aliases: [ebigtree]
+  burn:
+    description: 设置一个玩家着火.
+    usage: /<command> <玩家> <时间(秒)>
+    aliases: [eburn]
+  clearinventory:
+    description: 清空背包.
+    usage: /<command> [<玩家> [物品]]
+    aliases: [ci,eci,clean,eclean,clear,eclear,clearinvent,eclearinvent,eclearinventory]
+  compass:
+    description: 显示当前你的面朝方向.
+    usage: /<command>
+    aliases: [ecompass,direction,edirection]
+  delhome:
+    description: 删除家.
+    usage: /<command> [player:]<名称>
+    aliases: [edelhome,remhome,eremhome,rmhome,ermhome]
+  deljail:
+    description: 删除一个监狱.
+    usage: /<command> <监狱名称>
+    aliases: [edeljail]
+  delwarp:
+    description: 删除一个地标.
+    usage: /<command> <地标名称>
+    aliases: [edelwarp,remwarp,eremwarp,rmwarp,ermwarp]
+  depth:
+    description: 查看你所在位置的海拔高度.
+    usage: /depth
+    aliases: [edepth]
+  eco:
+    description: 调整玩家的经济状况(给钱|拿钱|重置).
+    usage: /<command> <give|take|set|reset> <玩家> <数量>
+    aliases: [eeco,economy,eeconomy]
+  enchant:
+    description: 附魔手中物品.
+    usage: /<command> <附魔名称> [附魔等级]
+    aliases: [eenchant,enchantment,eenchantment]
+  enderchest:
+    description: 查看玩家的末影箱.
+    usage: /<command> [player]
+    aliases: [echest,eechest,eenderchest,endersee,eendersee]
+  essentials:
+    description: 重载Essentials插件.
+    usage: /<command>
+    aliases: [eessentials, ess, eess, essversion]
+  exp:
+    description: 给予,设置,或查看一个玩家的经验值.
+    usage: /<command> [show|set|give] [玩家名称 [数量]]
+    aliases: [eexp,xp]
+  ext:
+    description: 熄灭玩家身上的火.
+    usage: /<command> [玩家]
+    aliases: [eext,extinguish,eextinguish]
+  feed:
+    description: 使玩家饱食度回复满.
+    usage: /<command> [玩家]
+    aliases: [eat,eeat,efeed]
+  fly:
+    description: 上升,起飞!
+    usage: /<command> [玩家 [on|off]]
+    aliases: [efly]
+  fireball:
+    description: 扔出一个火球.
+    usage: /<command> [small|skull]
+    aliases: [efireball,fireentity,efireentity,fireskull,efireskull]
+  firework:
+    description: 允许你修改手中的烟花
+    usage: /<command> <<meta param>|power [amount]|clear|fire [amount]>
+    aliases: [efirework]
+  gamemode:
+    description: 改变某玩家的游戏模式.
+    usage: /<command> <survival|creative|adventure> [玩家]
+    aliases: [adventure,eadventure,adventuremode,eadventuremode,creative,eecreative,creativemode,ecreativemode,egamemode,gm,egm,gma,egma,gmc,egmc,gms,egms,gmt,egmt,survival,esurvival,survivalmode,esurvivalmode]
+  gc:
+    description: 报告服务器剩余资源信息.
+    usage: /<command> [all]
+    aliases: [lag,elag,egc,mem,emem,memory,ememory,uptime,euptime]
+  getpos:
+    description: 查看你或其他玩家的坐标.
+    usage: /<command> [玩家]
+    aliases: [coords,egetpos,position,eposition,whereami,ewhereami]
+  give:
+    description: 给某玩家一个物品.
+    usage: /<command> <玩家> <物品|物品ID> [数量 <附魔名称[:附魔等级]> ...]
+    aliases: [egive]
+  god:
+    description: 让你拥有上帝的力量!
+    usage: /<command> [玩家 [on|off]]
+    aliases: [egod,godmode,egodmode,tgm,etgm]
+  hat:
+    description: 获得一些很酷的新头饰
+    usage: /<command> [remove]
+    aliases: [ehat]
+  heal:
+    description: 治愈某玩家.
+    usage: /<command> [玩家]
+    aliases: [eheal]
+  help:
+    description: 查看帮助命令列表.
+    usage: /<command> [搜索项目] [页数]
+    aliases: [ehelp]
+  helpop:
+    description: 给在线的管理员发送信息.
+    usage: /<command> <文本>
+    aliases: [ac,eac,amsg,eamsg,ehelpop]
+  home:
+    description: 传送回家.
+    usage: /<command> [player:][名称]
+    aliases: [ehome,homes,ehomes]
+  ignore:
+    description: 忽略某玩家.
+    usage: /<command> <玩家>
+    aliases: [eignore]
+  info:
+    description: 查看服务器信息.
+    usage: /<command> [章节] [页数]
+    aliases: [about,eabout,ifo,eifo,einfo,inform,einform,news,enews]
+  invsee:
+    description: 查看某玩家背包.
+    usage: /<command> <玩家>
+    aliases: [einvsee]
+  item:
+    description: 生成一个物品.
+    usage: /<command> <物品名称|物品ID> [数量 <附魔名称[:附魔等级]> ...]
+    aliases: [i,eitem]
+  itemdb:
+    description: 搜索物品.
+    usage: /<command> <物品ID>
+    aliases: [dura,edura,durability,edurability,eitemdb,itemno,eitemno]
+  jails:
+    description: 显示所有监狱的列表.
+    usage: /<command>
+    aliases: [ejails]
+  jump:
+    description: 传送到视野尽头.
+    usage: /<command>
+    aliases: [j,ej,ejump,jumpto,ejumpto]
+  kick:
+    description: 把某玩家以某理由从服务器踢出.
+    usage: /<command> <玩家> [理由]
+    aliases: [ekick]
+  kickall:
+    description: 把所有玩家踢出服务器,除了OP.
+    usage: /<command> [理由]
+    aliases: [ekickall]
+  kill:
+    description: 杀死某个玩家.
+    usage: /<command> <玩家>
+    aliases: [ekill]
+  killall:
+    description: 杀死这个世界的所有生物.
+    usage: /<command> [生物种类] [半径]
+    aliases: [butcher,ebutcher,ekillall,mobkill,emobkill]
+  kit:
+    description: 获得指定的工具包,或查看可用的工具包.
+    usage: /<command> [kit] [玩家]
+    aliases: [ekit,kits,ekits]
+  kittycannon:
+    description: 向你的对手扔出一个爆炸的小猫.
+    usage: /<command>
+  lightning:
+    description: 神的力量！让闪电劈到准星处或玩家头顶.
+    usage: /<command> [玩家] [威力]
+    aliases: [elightning,shock,eshock,smite,esmite,strike,estrike,thor,ethor]
+  list:
+    description: 查看所有在线的玩家.
+    usage: /<command>
+    aliases: [elist,online,eonline,playerlist,eplayerlist,plist,eplist,who,ewho]
+  mail:
+    description: 查看/清除/发送 邮件.
+    usage: /<command> [read|clear|send [to] [文本]|sendall [文本]]
+    aliases: [email]
+  me:
+    description: 在接下来说的话中添加星号前缀.
+    usage: /<command> <描述>
+    aliases: [action,eaction,describe,edescribe,eme]
+  more:
+    description: 让手中物品达到最大堆叠.
+    usage: /<command>
+    aliases: [emore]
+  motd:
+    description: 查看今日服务器消息.
+    usage: /<command>
+    aliases: [emotd]
+  msg:
+    description: 发送一条密语给某玩家.
+    usage: /<command> <to> <文本>
+    aliases: [w,m,t,emsg,tell,etell,whisper,ewhisper]
+  mute:
+    description: 禁言或解禁 玩家.
+    usage: /<command> <玩家> [datediff]
+    aliases: [emute]
+  near:
+    description: 列出自己身边的玩家,或列出某玩家附近的其它玩家.
+    usage: /<command> [玩家名称] [半径]
+    aliases: [enear,nearby,enearby]
+  nick:
+    description: 改变自己的昵称,或者别人的昵称<管理员>.
+    usage: /<command> [玩家] <昵称|off>
+    aliases: [enick]
+  nuke:
+    description: 发射核武器.
+    usage: /<command> [玩家]
+    aliases: [enuke]
+  pay:
+    description:  从你的账户中转账付费给某玩家.
+    usage: /<command> <玩家> <钱数>
+    aliases: [epay]
+  ping:
+    description: 啪啪啪啪啪啪啪啪啪!
+    usage: /<command>
+    aliases: [echo,eecho,eping,pong,epong]
+  potion:
+    description: 为一个药水瓶添加自定义药水效果.
+    usage: /<command> <clear|apply|effect:<effect> power:<power> duration:<duration>>
+    aliases: [epotion,elixer,eelixer]
+  powertool:
+    description: 给手中物品指定一个命令.
+    usage: /<command> [l:|a:|r:|c:|d:][命令] [参数] - {player} 可以点击玩家的名字所取代.
+    aliases: [epowertool,pt,ept]
+  powertooltoggle:
+    description: 开启或关闭当前所有的powertool.
+    usage: /<command>
+    aliases: [epowertooltoggle,ptt,eptt,pttoggle,epttoggle]
+  ptime:
+    description: 专门调整某玩家客户端的时间. 添加 @ 前缀来修复.
+    usage: /<command> [list|reset|day|night|dawn|17:30|4pm|4000ticks] [玩家|*]
+    aliases: [playertime,eplayertime,eptime]
+  r:
+    description: 快速回复别人发给你的信息(邮件/私信).
+    usage: /<command> <文本>
+    aliases: [er,reply,ereply]
+  realname:
+    description: 查看某玩家的真名(nick之前的名字).
+    usage: /<command> <昵称>
+    aliases: [erealname]
+  recipe:
+    description: 显示物品的合成配方.
+    usage: /<command> <物品> [数字]
+    aliases: [formula,eformula,method,emethod,erecipe,recipes,erecipes]
+  remove:
+    description: 删除世界中的实体(掉落的物品|箭|船|矿车|经验|挂画).
+    usage: /<command> <drops|arrows|boats|minecarts|xp|paintings> [半径]
+    aliases: [eremove]
+  repair:
+    description: 修复<手中|所有>的物品.
+    usage: /<command> <hand|all>
+    aliases: [fix,efix,erepair]
+  rules:
+    description: 查看服务器规则.
+    usage: /<command>
+    aliases: [erules]
+  seen:
+    description: 查看最后一位玩家登出的时间.
+    usage: /<command> <playername>
+    aliases: [eseen]
+  sell:
+    description: 把手中的物品出售给系统.
+    usage: /<command> <itemname|id|hand|inventory|blocks> [-][数量]
+    aliases: [esell]
+  sethome:
+    description: 把你的家设置在这个位置.
+    usage: /<command> [[player:]名称]
+    aliases: [esethome]
+  setjail:
+    description: 在你所在位置设置一个监狱,名称叫 [监狱名称]
+    usage: /<command> <监狱名称>
+    aliases: [esetjail]
+  setwarp:
+    description: 创建一个新的地标.
+    usage: /<command> <地标名称>
+    aliases: [createwarp,esetwarp]
+  setworth:
+    description: 设置某个物品的价值.
+    usage: /<command> [itemname|id] <price>
+    aliases: [esetworth]
+  socialspy:
+    description: 切换你是否可以看到其他玩家的私聊和邮件.
+    usage: /<command>
+    aliases: [esocialspy]
+  spawner:
+    description: 改变一个刷怪笼的类型.
+    usage: /<command> <生物类型>
+    aliases: [changems,echangems,espawner]
+  spawnmob:
+    description: 生成一个生物.
+    usage: /<command> <生物类型>[:data][,<mount>[:data]] [数量] [玩家]
+    aliases: [mob,emob,spawnentity,espawnentity,espawnmob]
+  speed:
+    description: 改变移动速度.
+    usage: /<command> <speed> [player]
+    aliases: [flyspeed,eflyspeed,fspeed,efspeed,espeed,walkspeed,ewalkspeed,wspeed,ewspeed]
+  sudo:
+    description: 让某玩家强制执行一个命令.
+    usage: /<command> <玩家> <命令 [参数]>
+    aliases: [esudo]
+  suicide:
+    description: 自杀.
+    usage: /<command>
+    aliases: [esuicide]
+  tempban:
+    description: 临时封禁一个玩家.
+    usage: /<command> <玩家> <时间>
+    aliases: [etempban]
+  thunder:
+    description: 允许/禁止 自然雷击.
+    usage: /<command> <true/false> [时间]
+    aliases: [ethunder]
+  time:
+    description: 显示/改变世界的时间,默认当前世界.
+    usage: /<command> [day|night|dawn|17:30|4pm|4000ticks] [世界名称|all]
+    aliases: [day,eday,night,enight,etime]
+  togglejail:
+    description: 监禁/解禁一个玩家,并传送他到监狱.
+    usage: /<command> <玩家> <监狱名称> [时间]
+    aliases: [jail,ejail,tjail,etjail,etogglejail,unjail,eunjail]
+  top:
+    description: 传送到你所站坐标上的最高方块处.
+    usage: /<command>
+    aliases: [etop]
+  tp:
+    description: 强行传送到某玩家.
+    usage: /<command> <玩家> [另一个玩家]
+    aliases: [tele,etele,teleport,eteleport,etp,tp2p,etp2p]
+  tpa:
+    description: 发送一条传送请求,让你传送到对象玩家的地点.
+    usage: /<command> <玩家>
+    aliases: [call,ecall,etpa,tpask,etpask]
+  tpaall:
+    description: 发送一条传送请求,让所有玩家都传送到你这里.
+    usage: /<command> <玩家>
+    aliases: [etpaall]
+  tpaccept:
+    description: 接受传送请求.
+    usage: /<command> [其他玩家]
+    aliases: [etpaccept,tpyes,etpyes]
+  tpahere:
+    description: 发送一条传送请求,让对象玩家传送到你所在的地点.
+    usage: /<command> <玩家>
+    aliases: [etpahere]
+  tpall:
+    description: 强制把所有在线玩家传送到自己的位置.
+    usage: /<command> <玩家>
+    aliases: [etpall]
+  tpdeny:
+    description: 拒绝传送请求.
+    usage: /<command>
+    aliases: [etpdeny,tpno,etpno]
+  tphere:
+    description: 强制把一个玩家传送到自己的位置.
+    usage: /<command> <玩家>
+    aliases: [s,etphere]
+  tpo:
+    description: 强行传送到某玩家,无视拒绝传送.
+    usage: /<command> <玩家> [其他玩家]
+    aliases: [etpo]
+  tpohere:
+    description: 强制把一个玩家传送到自己的位置,无视拒绝传送.
+    usage: /<command> <玩家>
+    aliases: [etpohere]
+  tppos:
+    description: 把自己传送到某个坐标.
+    usage: /<command> <x坐标> <y坐标> <z坐标> [角度] [pitch]
+    aliases: [etppos]
+  tptoggle:
+    description: 拒绝所有传送.
+    usage: /<command> [player [on|off]]
+    aliases: [etptoggle]
+  tree:
+    description: 在你准心所对的位置生成一颗大树.
+    usage: /<command> <tree|birch|redwood|redmushroom|brownmushroom|jungle|junglebush|swamp>
+    aliases: [etree]
+  unban:
+    description: 解除封禁玩家.
+    usage: /<command> <玩家>
+    aliases: [pardon,eunban,epardon]
+  unbanip:
+    description: 解除封禁IP地址.
+    usage: /<command> <IP地址>
+    aliases: [eunbanip,pardonip,epardonip]
+  unlimited:
+    description: 允许某玩家无限放置某方块.
+    usage: /<command> <list|item|clear> [玩家]
+    aliases: [eunlimited,ul,unl,eul,eunl]
+  vanish:
+    description: 进入隐身模式,其他玩家将无法看到你.
+    usage: /<command> [on|off]
+    aliases: [v,ev,evanish]
+  warp:
+    description: 列出所有的地标,或传送到该地标.
+    usage: /<command> <页数|地标名称> [玩家]
+    aliases: [ewarp,warps,ewarps]
+  weather:
+    description: 设置所在世界的天气.
+    usage: /<command> <storm/sun> [时间]
+    aliases: [rain,erain,sky,esky,storm,estorm,sun,esun,eweather]
+  whois:
+    description: 在昵称后面显示真名,并列出玩家信息.
+    usage: /<command> <昵称>
+    aliases: [ewhois]
+  workbench:
+    description: 随时随地开启一个工作台
+    usage: /<command>
+    aliases: [craft,ecraft,wb,ewb,wbench,ewbench,eworkbench]
+  world:
+    description: 在各个世界间转换.
+    usage: /<command> [世界名称]
+    aliases: [eworld]
+  worth:
+    description: 查看某物品的价值.
+    usage: /<command> [物品] [数量]
+    aliases: [eprice,price,eworth]
+
+permissions:
+  essentials.*:
+    default: op
+    description: Give players with op everything by default

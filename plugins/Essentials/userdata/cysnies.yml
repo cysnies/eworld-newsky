@@ -1,0 +1,23 @@
+socialspy: false
+timestamps:
+  login: 1776434372870
+  logout: 1776417468242
+  lastteleport: 1776435267819
+  kits:
+    vip1: 1776435063830
+ipAddress: 125.81.161.98
+lastlocation:
+  world: world
+  x: 147.58132726931876
+  y: 136.0
+  z: -137.39912324114715
+  yaw: -66.39338
+  pitch: 6.9001226
+logoutlocation:
+  world: sky
+  x: 150.60477180521008
+  y: 33.0
+  z: 450.74683468979816
+  yaw: -3.300004
+  pitch: 43.350006
+money: 9975.75

@@ -1,0 +1,4 @@
+name: BugFix
+main: bugfix.BugFix
+version: 1.0
+commands:

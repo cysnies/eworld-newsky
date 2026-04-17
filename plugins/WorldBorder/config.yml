@@ -1,0 +1,24 @@
+cfg-version: 7
+message: 浣犲埌杈句簡涓栫晫杈圭紭!
+round-border: false
+debug-mode: false
+whoosh-effect: false
+portal-redirection: true
+knock-back-dist: 3.0
+timer-delay-ticks: 8
+remount-delay-ticks: 0
+dynmap-border-enabled: true
+dynmap-border-message: The border of the world.
+worlds:
+  world:
+    x: 0.5319101684582974
+    z: 0.4034477201516482
+    radiusX: 500
+    radiusZ: 500
+    wrapping: false
+  sky:
+    x: 152.0
+    z: 148.0
+    radiusX: 1000000
+    radiusZ: 1000000
+    wrapping: false

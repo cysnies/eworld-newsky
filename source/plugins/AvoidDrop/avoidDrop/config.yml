@@ -1,0 +1,8 @@
+#功能:
+#  >防掉线物品掉落
+invs:
+  - "CRAFTING"
+  - "WORKBENCH"
+  - "ENCHANTING"
+  - "ANVIL"
+  - "MERCHANT"

@@ -1,0 +1,57 @@
+# NewSky Minecraft 服务端（Linux 容器）
+#
+# 与「其他服务共用 MySQL」时：删除本文件中的 mysql 服务，并去掉 newsky 的 depends_on；
+#   将 MYSQL_HOST 设为宿主机/远端地址（例如 extra_hosts 添加 host.docker.internal）。
+#
+# 游戏数据：将项目根目录（含 craftbukkit.jar、地图、插件等）绑定挂载到容器 /server，不写入镜像。
+# 数据库 schema 不在此初始化；需要时在宿主机手动执行 ./init-db.sh（见 env.example）。
+
+services:
+  newsky:
+    build:
+      context: .
+    image: cysnies/eworld-newsky:latest
+    ports:
+      - "${PUBLISH_PORT:-25565}:25565"
+      # 与 server.properties 的 rcon.port 一致（默认 25575）
+      - "${RCON_PUBLISH_PORT:-25575}:25575"
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST:-mysql}
+      MYSQL_PORT: ${MYSQL_PORT:-3306}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-newsky}
+      MYSQL_USER: ${MYSQL_USER:-newsky}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-changeme}
+      MC_SERVER_PORT: ${MC_SERVER_PORT:-25565}
+    volumes:
+      - .:/server
+    # 使用宿主机 MySQL 时取消注释，并将 MYSQL_HOST=host.docker.internal
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    # 旧版插件内嵌的 com.mysql.jdbc.Driver 不支持 MySQL 8 默认的 caching_sha2_password，需使用原生密码插件
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-newsky}
+      MYSQL_USER: ${MYSQL_USER:-newsky}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-changeme}
+    ports:
+      - "${MYSQL_PUBLISH_PORT:-33060}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  mysql-data:

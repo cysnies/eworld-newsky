@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ Copyright (c) 2010, Red Hat Inc. or third-party contributors as
+  ~ indicated by the @author tags or express copyright attribution
+  ~ statements applied by the authors.  All third-party contributions are
+  ~ distributed under license by Red Hat Inc.
+  ~
+  ~ This copyrighted material is made available to anyone wishing to use, modify,
+  ~ copy, or redistribute it subject to the terms and conditions of the GNU
+  ~ Lesser General Public License, as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+  ~ or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
+  ~ for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public License
+  ~ along with this distribution; if not, write to:
+  ~ Free Software Foundation, Inc.
+  ~ 51 Franklin Street, Fifth Floor
+  ~ Boston, MA  02110-1301  USA
+  -->
+<hibernate-mapping package="land">
+ <class name="EnterTip" table="land_entertip">
+  <id name="id">
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="landId" not-null="true" unique="true"/>
+  <property generated="never" lazy="false" name="tip"/>
+ </class>
+ <class name="LeaveTip" table="land_leavetip">
+  <id name="id">
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="landId" not-null="true" unique="true"/>
+  <property generated="never" lazy="false" name="tip"/>
+ </class>
+ <class name="LandUser" table="land_landuser">
+  <id name="id">
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="name" not-null="true" unique="true"/>
+  <property generated="never" lazy="false" name="maxLands" not-null="true"/>
+ </class>
+ <class name="Land" table="land_land">
+  <id name="id">
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="fix"/>
+  <property generated="never" lazy="false" name="type"/>
+  <property generated="never" lazy="false" name="name"/>
+  <property generated="never" lazy="false" name="overlap"/>
+  <property generated="never" lazy="false" name="price"/>
+  <property generated="never" lazy="false" name="owner"/>
+  <property column="range_" generated="never" lazy="false" name="range"/>
+  <property generated="never" lazy="false" name="level"/>
+  <property generated="never" lazy="false" length="60000" name="flags" type="serializable"/>
+  <property generated="never" lazy="false" length="60000" name="pers" type="serializable"/>
+ </class>
+ <class name="LandSpawn" table="land_landspawn">
+  <id name="id">
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="landId" not-null="true" unique="true"/>
+  <property generated="never" lazy="false" name="spawn"/>
+  <property generated="never" lazy="false" name="yaw"/>
+  <property generated="never" lazy="false" name="pitch"/>
+ </class>
+ <class name="LandCmd" table="land_landcmd">
+  <id name="id">
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="landId" not-null="true" unique="true"/>
+  <property generated="never" lazy="false" name="cmd"/>
+ </class>
+</hibernate-mapping>

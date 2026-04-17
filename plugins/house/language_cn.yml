@@ -1,0 +1,38 @@
+#转换说明
+#'/&'会被转换成'&'
+#'&'会被轮换成'/u00A7'
+#'\n '会被转换成'\n'
+
+#普通语言
+lang_5: "启动失败!插件需求: lib."
+lang_10: "house命令提示"
+lang_15: "/house <reloadConfig/rc>"
+lang_20: "重新读取配置文件."
+lang_25: "重新读取配置文件成功."
+lang_30: "重新读取配置文件失败."
+lang_35: "此命令只能玩家发出."
+lang_40: "你没有家."
+lang_45: "/house"
+lang_50: "传送家."
+lang_55: "/house set"
+lang_60: "设置家."
+lang_70: "金币不足."
+lang_75: "/house repair [on/off]"
+lang_80: "不加变量指修复当前位置家."
+lang_85: "非管理无法使用此指令."
+lang_90: "你开启了自动修复,使用的物品为木剑."
+lang_95: "你关闭了自动修复."
+lang_100: "/house auto <间隔tick> <xMin> <xMax> <zMin> <zMax>"
+lang_105: "自动每隔一定tick从指定位置到指定位置生成家."
+lang_110: "/house stop"
+lang_115: "停止自动生成."
+lang_120: "目前没有开启自动生成任务."
+lang_125: "你停止了自动生成任务."
+lang_130: "任务开启成功."
+lang_135: "目前已经有任务在运行."
+lang_140: "生成成功."
+
+#格式语言
+lang-5: "upgradeMaxTip:&c升级失败,不能超过最大高度&3{0}"
+lang-10: "upgradeDel:&c金币-{0}"
+lang-15: "upgradeSuccess:&a升级成功,目前你家的最大高度为&3{0}&a."

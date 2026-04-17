@@ -1,0 +1,37 @@
+# ----- CustomItems ----- Item configuration file -----
+# This file configures the custom items registed by NBTEditor.
+# For the changes to take effect you must reload the corresponding plugin.
+# 
+# Note regarding allowed-worlds/blocked-worlds:
+#   allowed-worlds, when not empty, acts like a whitelist and only
+#   on worlds from this list the item will be enabled!
+
+custom-items:
+  bos-empty:
+    enabled: true
+    name: 鎼俛Book of Souls鎼俽 - 鎼俢Empty
+    lore:
+    - 鎼俠This is a empty Book of Souls.
+    - 鎼俠Left-click on an existing entity to capture his soul.
+    allowed-worlds: []
+    blocked-worlds: []
+  bos:
+    enabled: true
+    name: 鎼俠Book of Souls
+    lore: []
+    allowed-worlds: []
+    blocked-worlds: []
+  mob-inspector:
+    enabled: true
+    name: 鎼俠Mob Inspector
+    lore:
+    - 鎼俥Right-click on entities to see their information.
+    allowed-worlds: []
+    blocked-worlds: []
+  mob-remover:
+    enabled: true
+    name: 鎼俠Mob Remover
+    lore:
+    - 鎼俥Right-click on entities remove them.
+    allowed-worlds: []
+    blocked-worlds: []

@@ -1,0 +1,37 @@
+package org.hibernate.internal.jaxb.mapping.hbm;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+   name = "param-element",
+   propOrder = {"value"}
+)
+public class JaxbParamElement {
+   @XmlValue
+   protected String value;
+   @XmlAttribute(
+      required = true
+   )
+   protected String name;
+
+   public String getValue() {
+      return this.value;
+   }
+
+   public void setValue(String value) {
+      this.value = value;
+   }
+
+   public String getName() {
+      return this.name;
+   }
+
+   public void setName(String value) {
+      this.name = value;
+   }
+}

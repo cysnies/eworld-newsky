@@ -1,0 +1,76 @@
+# Group inheritance
+#
+# Any inherited groups prefixed with a g: are global groups
+# and are inherited from the GlobalGroups.yml.
+#
+# Groups without the g: prefix are groups local to this world
+# and are defined in the this groups.yml file.
+#
+# Local group inheritances define your promotion tree when using 'manpromote/mandemote'
+
+groups:
+  default:
+    default: true
+    permissions:
+    inheritance:
+    - g:groupmanager_default
+    info:
+      prefix: ''
+      build: true
+      suffix: ''
+  vip:
+    default: false
+    permissions:
+      - essentials.kit
+      - essentials.kits.vip1
+      - essentials.chat.color
+      - essentials.chat.format
+      - per.death.durability
+      - essentials.joinfullserver
+      - per.chat.vip
+      - per.land.handler.sell
+      - quickshop.vip
+      - per.basic.str1
+      - per.lock.create.key
+      - per.lock.vip
+      - per.basic.hp1
+    inheritance:
+    - default
+    info:
+      prefix: '[&5VIP&f]'
+      build: true
+      suffix: '&6'
+  gold:
+    default: false
+    permissions:
+      - essentials.kits.vip2
+      - essentials.teleport.timer.bypass
+      - per.land.handler.tp.noDelay
+      - per.chat.gold
+      - essentials.hat
+      - quickshop.gold
+      - per.land.flag.storm
+      - per.basic.str2
+      - per.basic.hp2
+    inheritance:
+    - vip
+    info:
+      prefix: '[&6黄金VIP&f]'
+      build: true
+      suffix: '&6'
+  diamond:
+    default: false
+    permissions:
+      - essentials.kits.vip3
+      - per.chat.diamond
+      - quickshop.diamond
+      - per.land.flag.fly
+      - per.land.flag.forcePvp
+      - per.mine.luck
+      - per.basic.hp3
+    inheritance:
+    - gold
+    info:
+      prefix: '[&b钻石VIP&f]'
+      build: true
+      suffix: '&6'

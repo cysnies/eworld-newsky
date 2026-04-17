@@ -1,0 +1,8 @@
+BungeeCord.jar 3
+EWorld2S\craftbukkit.jar C
+F:\NewSkyServer\craftbukkit.jar 30
+CreativeServer2\craftbukkit.jar 40
+EWorld2Ssub\craftbukkit.jar A0
+F:\SkyServer\craftbukkit.jar 90
+EWorld2D\craftbukkit.jar 80
+EWorld2L\craftbukkit.jar 80

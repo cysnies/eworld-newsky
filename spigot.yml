@@ -1,0 +1,92 @@
+# This is the main configuration file for Spigot.
+# As you can see, there's tons to configure. Some options may impact gameplay, so use
+# with caution, and make sure you know what each option does before configuring.
+# For a reference for any variable inside this file, check out the Spigot wiki at
+# http://www.spigotmc.org/wiki/spigot-configuration/
+# 
+# If you need help with the configuration or have any questions related to Spigot,
+# join us at the IRC or drop by our forums and leave a post.
+# 
+# IRC: #spigot @ irc.esper.net ( http://webchat.esper.net/?channel=spigot )
+# Forums: http://www.spigotmc.org/forum/
+
+config-version: 3
+settings:
+  log-filters:
+  - ^(.*)(/login)(.*)$
+  # Docker 非 TTY 下 JLine 可能反复输出仅含提示符的行，过滤裸 > 与常见 [INFO] > 行
+  - ^> *$
+  - '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} \[INFO\] >$'
+  timeout-time: 60
+  restart-on-crash: true
+  restart-script: ./start.sh
+  prevent-proxies: false
+  bungeecord-addresses:
+  - 127.0.0.1
+  bungeecord: true
+  netty-threads: 5
+commands:
+  spam-exclusions:
+  - /skill
+  log: true
+  tab-complete: false
+listeners:
+- port: default
+  host: default
+  netty: true
+messages:
+  whitelist: 你不在服务器的白名单上。
+  unknown-command: 未知命令。
+  server-full: 当前服务器已满！
+  outdated-client: 你的客户端版本过低，请升级客户端版本。
+  outdated-server: 你的客户端版本过高，请降级客户端版本。
+world-settings:
+  default:
+    verbose: true
+    entity-activation-range:
+      animals: 24
+      monsters: 24
+      misc: 16
+    entity-tracking-range:
+      players: 32
+      animals: 32
+      monsters: 32
+      misc: 32
+      other: 32
+    ticks-per:
+      hopper-check: 40
+      hopper-transfer: 40
+    random-light-updates: false
+    anti-xray:
+      enabled: false
+      engine-mode: 2
+      blocks:
+      - 1
+      - 5
+      - 14
+      - 15
+      - 16
+      - 21
+      - 48
+      - 49
+      - 54
+      - 56
+      - 73
+      - 74
+      - 82
+      - 129
+      - 130
+    mob-spawn-range: 4
+    growth:
+      cactus-modifier: 100
+      cane-modifier: 100
+      melon-modifier: 100
+      mushroom-modifier: 100
+      pumpkin-modifier: 100
+      sapling-modifier: 100
+      wheat-modifier: 100
+    view-distance: 4
+    chunks-per-tick: 50
+    merge-radius:
+      exp: 2.5
+      item: 2.0

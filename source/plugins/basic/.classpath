@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
+	<classpathentry kind="lib" path="F:/AncientLand/NewSkyServer/plugins/lib.jar" sourcepath="/e_lib"/>
+	<classpathentry kind="lib" path="F:/AncientLand/NewSkyServer/plugins/QuickShop.jar"/>
+	<classpathentry kind="lib" path="F:/AncientLand/NewSkyServer/plugins/land.jar" sourcepath="/e_land_newsky"/>
+	<classpathentry kind="lib" path="F:/AncientLand/NewSkyServer/lib/landLib.jar" sourcepath="/e_landLib"/>
+	<classpathentry kind="lib" path="F:/AncientLand/NewSkyServer/plugins/ticket.jar"/>
+	<classpathentry kind="lib" path="F:/AncientLand/EWorld2S/bukkit.jar" sourcepath="F:/AncientLand/EWorld1.6/Bukkit-1.6.2-R1.0.zip"/>
+	<classpathentry kind="lib" path="F:/AncientLand/NewSkyServer/craftbukkit.jar" sourcepath="F:/AncientLand/EWorld2S/CraftBukkit-1.6.2-R1.0.zip"/>
+	<classpathentry kind="lib" path="F:/AncientLand/NewSkyServer/plugins/ProtocolLib-2.7.3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

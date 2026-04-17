@@ -1,0 +1,4 @@
+name: libLoader
+main: libLoader.LibLoader
+version: 1.0
+load: startup

@@ -1,0 +1,1381 @@
+#################################
+#####       语言文件        #####
+#################################
+#语言文件相对路径
+language: "plugins/land/language_cn.yml"
+#################################
+#####         权限          #####
+#################################
+#插件管理权限
+per_land_admin: "per.land.admin"
+#################################
+#####    领地安全性检测     #####
+#################################
+#标记检测说明:标记权限为所有玩家=无标记(事实上像fly标记这是不相等的,但这里的检测不考虑这些情况)
+#此外会检测admin这一特殊标记
+check:
+  per: "per.land.check"          #检测领地安全性的权限
+  check1:
+    tip: "&3防破坏检测:"
+    flags:
+      - banBreak
+      - banInteract
+  check2:
+    tip: "&3防放置检测:"
+    flags:
+      - banPlace
+      - banInteract
+  check3:
+    tip: "&3防偷窃(开容器)检测:"
+    flags:
+      - banContainer
+      - banInteract
+  check4:
+    tip: "&3防使用按钮检测:"
+    flags:
+      - banButton
+      - banInteract
+  check5:
+    tip: "&3防使用门检测:"
+    flags:
+      - banDoor
+      - banInteract
+  check6:
+    tip: "&3防乱使用物品检测:"
+    flags:
+      - banUseOther
+      - banInteract
+  check7:
+    tip: "&3防右键生物(如打开马背包与动物被偷偷封印走)检测:"
+    flags:
+      - banContact
+  check8:
+    tip: "&3防伤害动物,村民,马检测:"
+    flags:
+      - protect
+  check9:
+    tip: "&3防进来偷窥检测:"
+    flags:
+      - banMove
+  check10:
+    tip: "&3防倒水/岩浆检测:"
+    flags:
+      - banBucket
+      - banInteract
+  check11:
+    tip: "&3防领地外水/岩浆流入检测:"
+    flags:
+      - banFlow
+  check12:
+    tip: "&3防点火烧人检测:"
+    flags:
+      - banIgnite
+      - banInteract
+  check13:
+    tip: "&3防瞬间伤害或毒药伤害生物检测:"
+    flags:
+      - banPotionHurt
+  check14:
+    tip: "&3防PVP检测:"
+    flags:
+      - banPvp
+  check15:
+    tip: "&3防其它玩家使用领地传送检测:"
+    flags:
+      - banTp
+  check16:
+    tip: "&3防玩家使用末影珍珠传送检测:"
+    flags:
+      - banEye
+#################################
+#####     标记(flag)配置    #####
+#################################
+admin:
+  use: true
+  per: "per.land.flag.admin"
+  tip: "总权限(特殊标记!指所有领地标记的权限)"
+
+banBonemeal:
+  use: true
+  per: "per.land.flag.banBonemeal"
+  tip: "禁止使用骨粉"
+  
+banBreak:
+  use: true
+  per: "per.land.flag.banBreak"
+  tip: "禁止打破方块/挂画"
+  
+banBucket:
+  use: true
+  per: "per.land.flag.banBucket"
+  tip: "禁止水/岩浆桶倒/装"
+  
+banButton:
+  use: true
+  per: "per.land.flag.banButton"
+  tip: "禁止使用&7(拉杆,按钮,压力板)"
+  blockType: "button"
+
+banCmd:
+  use: false
+  per: "per.land.flag.banCmd"
+  tip: "禁止使用命令(少数除外)"
+  canUse:                        #禁止使用命令的领地可以使用的命令列表
+    - "c"
+    - "chat"
+    - "money"
+    - "balance"
+    - "stats"
+    - "sit"
+    - "balancetop"
+    - "msg"
+    - "suicide"
+    
+banConsume:
+  use: false
+  per: "per.land.flag.banConsume"
+  tip: "禁止使用消耗品"
+  types:                         #标记值 禁止使用的物品类型
+    - "0 consume_all"
+    
+banContact:
+  use: true
+  per: "per.land.flag.banContact"
+  tip: "禁止与生物交互&7(指右键生物)"
+  contact: "contact"
+
+banContainer:
+  use: true
+  per: "per.land.flag.banContainer"
+  tip: "禁止打开容器&7(箱子,末影箱,熔炉,漏斗,发射器,投掷器,酿造台,唱片机)"
+  blockType: "container"
+
+banDoor:
+  use: true
+  per: "per.land.flag.banDoor"
+  tip: "禁止使用门&7(木门,铁门,栅栏门,活板门)"
+  blockType: "door"
+
+banEntityChange:
+  use: true
+  per: "per.land.flag.banEntityChange"
+  tip: "禁止实体改变方块&7(蠹虫,末影人)"
+
+banEye:
+  use: true
+  per: "per.land.flag.banEye"
+  tip: "禁止使用末影珍珠&7(包括传送进来,出去,在里面传送)"
+      
+banFlow:
+  use: true
+  per: "per.land.flag.banFlow"
+  tip: "禁止水/岩浆流动"
+      
+banFly:
+  use: false
+  per: "per.land.flag.banFly"
+  tip: "禁止飞行"
+ 
+banHide:
+  use: true
+  per: "per.land.flag.banHide"
+  tip: "禁止隐身药效"
+  interval: 30                      #多少tick检测一次(修改必须重启服务器才能生效)
+  
+banIgnite:
+  use: true
+  per: "per.land.flag.banIgnite"
+  tip: "禁止点火&7(打火石,火球,火)"
+  igniteType: "ignite"
+  
+banInteract:
+  use: true
+  per: "per.land.flag.banInteract"
+  tip: "禁止接触&7(禁止接触任何方块挂画)"
+
+banMonster:
+  use: false
+  per: "per.land.flag.banMonster"
+  tip: "禁止怪物出生"
+  monsterType: "monster"
+  
+banMove:
+  use: true
+  per: "per.land.flag.banMove"
+  tip: "禁止移动"
+  interval: 14                      #检测间隔,单位tick
+  distance: 1.0                     #移动的距离
+  
+banPhysical:
+  use: true
+  per: "per.land.flag.banPhysical"
+  tip: "禁止物理现象&7(着火,烧毁,融化,形成,(树苗)生长,蔓延,树叶掉落,方块物理现象)"
+  infos:                            #是否限制(true表示限制)
+    info0:
+      burn: true                    #烧毁
+      fade: true                    #融化
+      form: true                    #形成
+      grow: true                    #生长
+      ignite: true                  #着火
+      spread: true                  #蔓延
+      decay: true                   #树叶掉落
+      structure: true               #树苗生长
+      physics: true                 #方块物理现象
+    info1:
+      burn: true
+      fade: true
+      form: true
+      grow: true
+      ignite: true
+      spread: true
+      decay: true
+      structure: true
+      physics: false
+  
+banPlace:
+  use: true
+  per: "per.land.flag.banPlace"
+  tip: "禁止放置方块/挂画或接触展示框"
+  
+banPotionHurt:
+  use: true
+  per: "per.land.flag.banPotionHurt"
+  tip: "禁止玩家药水伤害生物(剧毒,瞬间伤害药水)"
+
+banPvp:
+  use: true
+  per: "per.land.flag.banPvp"
+  tip: "禁止PVP"
+   
+banTp:                               #指禁止传送领地传送点
+  use: true
+  per: "per.land.flag.banTp"
+  tip: "禁止领地传送"
+  
+banTpIn:
+  use: false
+  per: "per.land.flag.banTpIn"
+  tip: "禁止传送进来&7(但可以在里面传送或传送出去)"
+   
+banTpOut:
+  use: false
+  per: "per.land.flag.banTpOut"
+  tip: "禁止传送出去&7(但可以在里面传送或传送进来)"
+   
+banUse:
+  use: true
+  per: "per.land.flag.banUse"
+  tip: "禁止使用&7(音符盒,工作台,附魔台)"
+  blockType: "use"
+    
+banUseOther:
+  use: true
+  per: "per.land.flag.banUseOther"
+  tip: "禁止使用其它物品方块&7(蛋糕,床,TNT,炼药锅,信标,铁砧,中继器,比较器)"
+  blockType: "useOther"
+
+fixBug:
+  use: true
+  per: "per.land.flag.fixBug"
+  tip: "领地无此标记:禁流水允许活塞;领地有此标记:允许流水禁活塞"
+  
+fly:
+  use: true
+  per: "per.land.flag.fly"
+  tip: "(允许并强制)飞行"
+  
+forcePvp:
+  use: false
+  per: "per.land.flag.forcePvp"
+  tip: "强制PVP(会覆盖banPvp标记)"
+
+house:
+  use: false
+  per: "per.land.flag.house"
+  tip: "家的标记"
+
+mine:
+  use: false
+  per: "per.land.flag.mine"
+  tip: "矿场"
+
+poisonWater:
+  use: false
+  per: "per.land.flag.poisonWater"
+  tip: "毒水"
+  
+potion:
+  use: false
+  per: "per.land.flag.potion"
+  tip: "药效"
+  interval: 2                 #检测添加药效间隔,单位秒
+  infos:                      
+    info1:                    #药效名 时间(tick) 等级(0开始)
+      - "BLINDNESS 99999 0"
+      - "SLOW 99999 2"
+  
+protect:
+  use: true
+  per: "per.land.flag.protect"
+  tip: "保护生物&7(猪,羊,牛,鸡,鱿鱼,狼,蘑菇牛,雪傀儡,铁傀儡,豹猫,马,村民)"
+  protectType: "protect"
+
+res:
+  use: false
+  per: "per.land.flag.res"
+  tip: "资源岛"
+
+storm:
+  use: true
+  per: "per.land.flag.storm"
+  tip: "下雨/雪"
+#################################
+#####      handler配置      #####
+#################################
+#标记
+flag:
+  per: "per.land.handler.flag"   #设置标记的权限
+  invaidFlags:                   #无效的标记列表
+  removeName: "&4确认删除标记吗?"
+  removeLore:
+
+#购买领地上限
+buy:
+  perMaxLands: "per.land.handler.buyMaxLands"        #购买领地上限的权限
+  land:
+    maxCost: 3000                                    #增加一个最大领地数量的花费
+  name: "&4确认花费&3{0}&4金币购买吗?"
+  lore:
+    
+#领地命令
+cmd:
+  per: "per.land.handler.cmd"                        #设置领地命令权限
+    
+#创建'领地'
+create:
+  nameCheckNumber: true                              #true表示禁止全数字领地创建
+  per: "per.land.handler.create"                     #创建'领地'权限
+  perNoLimit: "per.land.handler.create.noLimit"      #不受大小限制权限
+  banWords:                                          #禁止使用的名字(包括小区与地皮的名字)(忽略大小写)
+    - "reload"
+  buyWorld:                #玩家可自由购买领地的世界列表(有不受限制权限per_land_admin)
+  addFlags:                #创建领地后自动添加的标记(标记名:值)
+    - "banBonemeal:0"
+    - "banBreak:0"
+    - "banPlace:0"
+    - "banIgnite:0"
+    - "banDoor:0"
+    - "banContact:0"
+    - "banButton:0"
+    - "banContainer:0"
+    - "banUseOther:0"
+    - "banBucket:0"
+    - "protect:0"
+    - "banPotionHurt:0"
+    - "banEntityChange:0"
+    - "fixBug:0"
+  baseCost: 300            #手续费
+  perCost: 0.08            #每个格子花费
+  vipPerCost: 0.05         #VIP的领地每格花费
+  vipPer: "per.land.handler.create.vip"
+  limit:                   #领地限制(有不受限制权限,见create.perNoLimit项)
+    size:                  #领地大小限制
+      min: 1
+      max: 10000000
+    xzRange:               #x与z轴长度限制
+      min: 1
+      max: 500
+    yRange:                #y轴长度限制
+      min: 1
+      max: 300
+     
+#创建'小区'
+zone:                                #每个格子花费使用create的配置
+  per: "per.land.handler.zone"                     #创建小区权限
+  perNoLimit: "per.land.handler.zone.noLimit"      #不受大小限制权限
+  buyWorld:                          #玩家可创建小区的世界列表(有不受世界限制权限)
+  addFlags:                          #创建小区后自动添加的标记(标记名:值)
+    - "banBonemeal:0"
+    - "banBreak:0"
+    - "banPlace:0"
+    - "banIgnite:0"
+    - "banDoor:0"
+    - "banContact:0"
+    - "banButton:0"
+    - "banContainer:0"
+    - "banUseOther:0"
+    - "banBucket:0"
+    - "protect:0"
+    - "banPotionHurt:0"
+    - "banEntityChange:0"
+    - "fixBug:0"
+  baseCost: 10000                    #手续费
+  limit:                             #小区限制(有不受限制权限,见zone.perNoLimit项)
+    size:                            #小区大小限制
+      min: 1
+      max: 100000000
+    xzRange:                         #x与z轴长度限制
+      min: 1
+      max: 1000
+    yRange:                          #y轴长度限制
+      min: 1
+      max: 300
+ 
+#创建'地皮'
+subzone:
+  per: "per.land.handler.subzone"    #创建地皮权限
+  baseCost: 20                       #手续费
+  addFlags:                          #创建小区后自动添加的标记(标记名:值)
+    - "banBonemeal:0"
+    - "banBreak:0"
+    - "banPlace:0"
+    - "banIgnite:0"
+    - "banDoor:0"
+    - "banContact:0"
+    - "banButton:0"
+    - "banContainer:0"
+    - "banUseOther:0"
+    - "banBucket:0"
+    - "protect:0"
+    - "banPotionHurt:0"
+    - "banEntityChange:0"
+    - "fixBug:0"
+     
+#进出领地检测
+enterLeave:
+  interval: 700                      #检测间隔,单位毫秒(注意此选项修改后需要重启服务器才会生效)
+      
+#查看当前位置领地列表
+info:
+  perInfoNow: "per.land.handler.infoNow"         #查看当前位置领地列表的权限
+  perInfoLand: "per.land.handler.infoLand"       #查看指定领地信息的权限
+  interval: 1000                                 #查看间隔,单位毫秒
+  
+#标记权限
+pers:
+  max: 10                                        #每个标记的最大权限数量
+  per: "per.land.handler.pers"                   #设置领地标记权限的权限
+  addAllName: "&a你确认添加所有玩家权限吗?"
+  addAllLore:
+    - "&7(会使所有玩家都拥有此标记权限)"
+  delAllName: "&4你确认删除所有玩家权限吗?"
+  delAllLore:
+    - "&7(会将标记权限列表清空)"
+
+#删除领地
+remove:
+  per: "per.land.handler.remove"     #删除领地的权限
+  name: "&4确认删除吗?"
+  lore:
+    - "&7(删除后无法恢复)"
+  
+#选择范围
+select:
+  per: "per.land.handler.select"     #选择,查看范围的权限
+  interval: 400                      #使用间隔,单位毫秒
+  getInterval: 30000                 #获取选择棒的间隔,单位毫秒
+  check: "&5+选择棒+"
+
+#出售'地皮'
+sell:
+  per: "per.land.handler.sell"       #出售地皮的权限(玩家)
+  buyPer: "per.land.handler.sell.buy"#购买地皮的权限(玩家)
+  name: "&4取消出售吗?"
+  lore:
+  tax: 5                             #购买地皮需要交纳的税率,0-100
+    
+#设置领地属性
+set:
+  setOwnerPer: "per.land.handler.set.owner"       #改变领地所有者的权限(玩家)
+  setNamePer: "per.land.handler.set.name"         #改变领地名字的权限(玩家)
+  setLevelPer: "per.land.handler.set.level"       #设置领地等级的权限(管理)
+  setOverlapPer: "per.land.handler.set.overlap"   #设置领地是否允许重叠的权限(管理)
+  setRangePer: "per.land.handler.set.range"       #更改领地范围的权限(玩家)
+  cost: 999999                                    #改变范围的手续费
+  
+#显示领地范围边框
+show:
+  per: "per.land.handler.show"                    #显示范围边框的权限
+  id: 89
+  maxShowBlocks: 200                              #最大显示改变的方块数量
+  interval: 10000                                 #两次显示的最小间隔,单位毫秒
+  
+#领地进出提示
+#变量:
+#<player>:触发的玩家名字
+#<id>:领地id
+#<name>:领地名字
+#<owner>:领地所有者
+#<level>:领地等级
+#<size>:领地大小
+#<world>:领地所处世界
+tip:
+  per: "per.land.handler.tip"        #设置进出领地提示的权限(玩家)
+  defaultEnterTip: "&6你进入了 &3<name>"
+  defaultLeaveTip: "&7你离开了 &3<name>"
+  maxLength: 200                     #提示最大长度
+  
+#领地传送
+tp:                                  #指传送领地传送点
+  perTp: "per.land.handler.tp"       #传送领地传送点的权限
+  perSet: "per.land.handler.setTp"   #设置领地传送点的权限
+  noDelayPer: "per.land.handler.tp.noDelay"   #传送无延迟的权限
+  delay: 3                           #传送延迟,单位秒
+  interval: 10000                    #传送间隔,单位毫秒
+  
+#
+land:
+  initMax: 1                         #每个玩家初始最大领地数量
+ 
+#固定领地 
+fix:
+  per: "per.land.handler.fix"        #固定领地的权限
+  name: "&4你确认固定领地吗?"
+  lore:
+    - "&7(固定领地后无法取消固定!)"
+    - "&7(固定领地后领地无法再改变!)"
+    - "&7(固定的领地可通知管理删除)"
+    - "&7(请勿必谨慎选择!!!)"
+#################################
+#####       界面配置        #####
+#################################
+item:
+  confirmTimeLimit: 8                         #确认时间限制
+  showMainMenuPer: "per.land.showMainMenu"    #显示领地主菜单的权限
+  showSeeAllPer: "per.land.showSeeAll"        #显示全部领地,小区,地皮列表的权限
+  showInterval: 800              #显示界面间隔,单位毫秒
+  lineMaxLength: 100             #lore里一行最大显示长度
+  item: 358                      #显示领地信息用的物品
+  displayName: "&3领地(ID&6{0}&3):&6{1}"
+  check:                         #检测用,与displayName相关
+    from: "ID&6"
+    to: "&3"
+  flagItem: 339                  #显示标记信息用的物品
+  flagDisplayName: "&3标记名:&6{0}"
+  flagNameCheckFrom: 8           #与flagDisplayName有关
+  main:                          #主菜单
+    info: 4                      #个人领地信息,对应的物品类型为"main_info"
+    seeNow: 40                   #查看当前位置land列表
+    seeAll1: 2                   #查看全部'领地'列表
+    seeYou1: 6                   #查看你的'领地'列表
+    seeAll2: 20                  #查看全部'小区'列表
+    seeYou2: 24                  #查看你的'小区'列表
+    seeAll3: 38                  #查看全部'地皮'列表
+    seeYou3: 42                  #查看你的'地皮'列表
+    seeAllSell3: 44              #查看全部出售的'地皮'列表
+    infoLand: 22                 #查看指定领地
+  seeNow:
+    main: 4                      #领地主菜单
+  land:
+    check: 31
+    info: 4
+    tp: 40
+    showRange: 2
+    setFlag: 22
+    sell: 9
+    changePrice: 18
+    cancelSell: 27
+    buy: 36
+    setTp: 42
+    toggleOverlap: 17
+    setName: 6
+    setLevel: 8
+    enterTip: 20
+    leaveTip: 38
+    fix: 26
+    setOwner: 35
+    delete: 44
+  sel:
+    select: 40                   #选择范围
+    info: 22
+    create: 36
+    create1: 29
+    create2: 31
+    create3: 33
+    setRange: 44
+    show: 4
+    up: 2
+    down: 6
+  setFlag:
+    add: 0
+    pre: 3
+    next: 5
+    back: 4
+  selFlag:
+    player: 0
+    op: 1
+    pre: 3
+    next: 5
+    back: 4
+  handleFlag:
+    add: 20
+    addAll: 38
+    del: 24
+    delAll: 42
+    change: 31
+    remove: 44
+#################################
+#####       物品类型        #####
+#################################
+items:
+  main_ver:
+    type: FEATHER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: '§a插件信息'
+      lore:
+        - '§3插件名: §6{0}'
+        - '§3版本: §6{1}'
+        - '§3作者: §6{2}'
+        - '§3网站: §6§n{3}'
+        - '§3说明: §6{4}'
+  main_info:
+    type: PAPER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a你的领地信息
+      lore:
+      - '§6当前领地: §3{0}个'
+      - '§6领地上限: §3{1}个'
+  main_seeAllSell3:
+    type: GOLD_INGOT
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6查看全部§c出售的§6地皮列表
+  main_seeYou3:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6查看§3你的§6地皮列表
+  main_seeYou1:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6查看§3你的§6领地列表
+  main_infoLand:
+    type: EYE_OF_ENDER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a查看指定领地
+      lore:
+      - §7(需要输入)
+  main_seeAll2:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6查看§c全部§6小区列表
+  main_seeAll1:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6查看§c全部§6领地列表
+  main_seeYou2:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6查看§3你的§6小区列表
+  main_seeAll3:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6查看§c全部§6地皮列表
+  main_seeNow:
+    type: NETHER_STAR
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a查看当前位置的领地列表
+      lore:
+      - §7(你的脚所在方块的位置)
+  seeNow_main:
+    type: ENDER_PORTAL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §5§l领地主菜单
+  see_first:
+    type: EMPTY_MAP
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6第1页
+      lore:
+      - '§3当前页: §6{0}'
+      - '§3最大页: §6{1}'
+  see_pre10:
+    type: PAPER
+    amount: 10
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6上10页
+  see_pre5:
+    type: PAPER
+    amount: 5
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6上5页
+  see_pre1:
+    type: PAPER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6上1页
+  see_main:
+    type: ENDER_PORTAL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §5§l领地主菜单
+  see_next1:
+    type: PAPER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6下1页
+  see_next5:
+    type: PAPER
+    amount: 5
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6下5页
+  see_next10:
+    type: PAPER
+    amount: 10
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6下10页
+  see_end:
+    type: EMPTY_MAP
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6最后一页
+  selBar:
+    type: STICK
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a选择棒
+      lore:
+      - §5+选择棒+
+      - §7(左键任意方块选择点1)
+      - §7(右键任意方块选择点2)
+      - §7(输入§3/land§7进入领地主菜单)
+  land_check:
+    type: FENCE
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §5检测领地安全性
+  land_info:
+    type: MAP
+  land_tp:
+    type: NETHER_STAR
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6传送领地
+  land_showRange:
+    type: ENDER_PEARL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6显示领地范围
+      lore:
+      - §7(会用萤石显示)
+  land_setFlag:
+    type: SIGN
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a查看领地标记
+  land_sell:
+    type: GREEN_RECORD
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a出售此领地
+      lore:
+      - §7(需要输入价格)
+  land_changePrice:
+    type: GREEN_RECORD
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a更改售价
+      lore:
+      - §7(需要输入新价格)
+  land_cancelSell:
+    type: GREEN_RECORD
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §c取消出售此领地
+      lore:
+      - §7(需要确认)
+  land_buy:
+    type: GREEN_RECORD
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a购买此领地
+      lore:
+      - §7(需要确认)
+  land_setTp:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a设置传送点
+      lore:
+      - §7(点击设置当前位置为传送点)
+  land_toggleOverlap:
+    type: RECORD_3
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a改变是否允许重叠
+      lore:
+      - §7(点击开启/关闭)
+  land_setName:
+    type: ENDER_PEARL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a改变领地名字
+      lore:
+      - §7(需要输入)
+  land_setLevel:
+    type: RECORD_3
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a设置等级
+      lore:
+      - §7(需要输入)
+  land_enterTip:
+    type: ENDER_PEARL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a进入领地的提示
+      lore:
+      - §7(点击修改)
+  land_leaveTip:
+    type: ENDER_PEARL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a离开领地的提示
+      lore:
+      - §7(点击修改)
+  land_fix:
+    type: RECORD_4
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §4固定领地
+      lore:
+      - §7(领地固定后无法改变!)
+      - §7(需要确认)
+  land_setOwner:
+    type: RECORD_4
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §4改变所有者
+      lore:
+      - §7(领地改变所有者后无法取回!)
+      - §7(需要输入)
+  land_delete:
+    type: RECORD_4
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §4删除领地
+      lore:
+      - §7(领地删除后无法恢复!)
+      - §7(需要确认)
+  land_ex1:
+    type: PAPER
+    amount: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a扩展1格
+      lore:
+        - "§7(手续费§510§7金币+额外每格花费)"
+        - "§7(你面朝的方向就是扩展的方向)"
+        - "§7(有六种方向:上,下,东,南,西,北)"
+        - "§7(需要确认)"
+  land_ex2:
+    type: PAPER
+    amount: 5
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a扩展5格
+      lore:
+        - "§7(手续费§510§7金币+额外每格花费)"
+        - "§7(你面朝的方向就是扩展的方向)"
+        - "§7(有六种方向:上,下,东,南,西,北)"
+        - "§7(需要确认)"
+  land_ex3:
+    type: PAPER
+    amount: 10
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a扩展10格
+      lore:
+        - "§7(手续费§510§7金币+额外每格花费)"
+        - "§7(你面朝的方向就是扩展的方向)"
+        - "§7(有六种方向:上,下,东,南,西,北)"
+        - "§7(需要确认)"
+  land_ex4:
+    type: MAP
+    amount: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a扩展指定格
+      lore:
+        - "§7(手续费§510§7金币+额外每格花费)"
+        - "§7(你面朝的方向就是扩展的方向)"
+        - "§7(有六种方向:上,下,东,南,西,北)"
+        - "§7(需要输入)"
+  land_con1:
+    type: PAPER
+    amount: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a收缩1格
+      lore:
+        - "§7(手续费§510§7金币,不会退还每格花费)"
+        - "§7(你面朝的方向就是收缩的方向)"
+        - "§7(有六种方向:上,下,东,南,西,北)"
+        - "§7(需要确认)"
+  land_con2:
+    type: PAPER
+    amount: 5
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a收缩5格
+      lore:
+        - "§7(手续费§510§7金币,不会退还每格花费)"
+        - "§7(你面朝的方向就是收缩的方向)"
+        - "§7(有六种方向:上,下,东,南,西,北)"
+        - "§7(需要确认)"
+  land_con3:
+    type: PAPER
+    amount: 10
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a收缩10格
+      lore:
+        - "§7(手续费§510§7金币,不会退还每格花费)"
+        - "§7(你面朝的方向就是收缩的方向)"
+        - "§7(有六种方向:上,下,东,南,西,北)"
+        - "§7(需要确认)"
+  land_con4:
+    type: MAP
+    amount: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a收缩指定格
+      lore:
+        - "§7(手续费§510§7金币,不会退还每格花费)"
+        - "§7(你面朝的方向就是收缩的方向)"
+        - "§7(有六种方向:上,下,东,南,西,北)"
+        - "§7(需要输入)"
+  sel_select:
+    type: STICK
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6选择范围
+      lore:
+      - §7(点击获取选择棒)
+  sel_info:
+    type: PAPER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a范围信息
+  sel_create:
+    type: GREEN_RECORD
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a创建§5§l领地§a(可重叠)
+      lore:
+      - §3花费:手续费§5{0}§3金币+范围花费
+      - §7(领地是私人+自由性质的)
+      - §7(需要输入)
+  sel_create1:
+    type: FENCE
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a创建§5§l领地
+      lore:
+      - §3花费:手续费§5{0}§3金币+范围花费
+      - §7(领地是私人+自由性质的)
+      - §7(需要输入)
+  sel_create2:
+    type: FENCE
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a创建§b§l小区
+      lore:
+      - §3花费:手续费§5{0}§3金币+范围花费
+      - §7(小区内可建立若干地皮)
+      - §7(改变不易,请谨慎创建!)
+      - §7(需要输入)
+  sel_create3:
+    type: FENCE
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a创建§2§l地皮
+      lore:
+      - §3花费:手续费§5{0}§3金币,范围免费
+      - §7(地皮只能建立在小区内)
+      - §7(需要输入)
+  sel_setRange:
+    type: RECORD_3
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a设置为指定领地的范围
+      lore:
+      - §7(手续费§510§7金币)
+      - §7(领地原范围会被此范围代替)
+      - §7(新范围如果比原范围大需要增加花费)
+      - §7(新范围如果比原范围小不会退还花费)
+      - §7(需要输入)
+  sel_show:
+    type: THIN_GLASS
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a点击显示范围边框
+  sel_up:
+    type: SNOW_BALL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6扩展到天顶
+  sel_down:
+    type: SNOW_BALL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6扩展到地壳
+  toSel:
+    type: ENDER_PORTAL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §5§l选择范围
+      lore:
+        - '§7仅在自己岛内建立地皮时会用到'
+        - '§7除在自己岛内建立地皮外你无法建立其它任何领地'
+  setFlag_add:
+    type: GREEN_RECORD
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a添加标记
+  setFlag_tip:
+    type: FEATHER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: '§a提示: 点击标记可进入标记操作'
+      lore:
+        - '§3包括:'
+        - '§6 - 查看权限列表'
+        - '§a - 添加玩家权限'
+        - '§c - 删除玩家权限'
+        - '§4 - 删除标记'
+        - '§7 - 改变标记值(一般用不到)'
+  setFlag_pre:
+    type: PAPER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6上1页
+  setFlag_next:
+    type: PAPER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6下1页
+  setFlag_back:
+    type: ENDER_PORTAL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §5§l返回领地操作
+  selFlag_player:
+    type: FEATHER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: '§3类型: §a玩家可用'
+      lore:
+        - "§7(并不代表你一定有权限用)"
+        - "§7(部分标记需要指定的VIP才能用)"
+        - "§7(点击切换)"
+  selFlag_op:
+    type: FEATHER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: '§3类型: §c管理专用'
+      lore:
+        - "§7(非提供给玩家使用的标记)"
+        - "§7(点击切换)"
+  selFlag_pre:
+    type: PAPER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6上1页
+  selFlag_next:
+    type: PAPER
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §6下1页
+  selFlag_back:
+    type: ENDER_PORTAL
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §5§l返回标记列表
+  handleFlag_add:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a添加权限
+      lore:
+      - §7(需要输入)
+  handleFlag_addAll:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a添加所有玩家权限
+      lore:
+      - §7(需要确认)
+  handleFlag_del:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §c删除权限
+      lore:
+      - §7(需要输入)
+  handleFlag_delAll:
+    type: ENDER_PEARL
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §c删除所有玩家权限
+      lore:
+      - §7(需要确认)
+  handleFlag_change:
+    type: RECORD_3
+    damage: 1
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §a改变标记值
+      lore:
+      - §7(需要输入)
+  handleFlag_remove:
+    type: RECORD_4
+    meta:
+      ==: ItemMeta
+      meta-type: UNSPECIFIC
+      display-name: §4删除标记
+      lore:
+      - §7(需要确认)
+#################################
+#####         类型          #####
+#################################
+types:
+  item:
+    consume_all:
+      mode: 2
+      inherit:
+      types:
+    container:
+      mode: 1
+      inherit:
+      types:
+        - 23
+        - 54
+        - 61
+        - 62
+        - 84
+        - 95
+        - 117
+        - 130
+        - 146
+        - 154
+        - 158
+    door:
+      mode: 1
+      inherit:
+      types:
+        - 64
+        - 71
+        - 96
+        - 107
+    button:
+      mode: 1
+      inherit:
+      types:
+        - 69
+        - 77
+        - 70
+        - 72
+        - 143
+    use:
+      mode: 1
+      inherit:
+      types:
+        - 25
+        - 58
+        - 116
+    useOther:
+      mode: 1
+      inherit:
+      types:
+        - 92
+        - 26
+        - 46
+        - 118
+        - 138
+        - 145
+        - 93
+        - 94
+        - 149
+        - 150
+    ignite:
+      mode: 1
+      inherit:
+      types:
+        - 51
+        - 259
+        - 385
+  entity:
+    protect:
+      mode: 1
+      inherit:
+      types:
+        - 90
+        - 91
+        - 92
+        - 93
+        - 94
+        - 95
+        - 96
+        - 97
+        - 98
+        - 99
+        - 100
+        - 120
+    monster:
+      mode: 1
+      inherit:
+      types:
+        - "CREEPER"
+        - "SKELETON"
+        - "SPIDER"
+        - "GIANT"
+        - "ZOMBIE"
+        - "SLIME"
+        - "GHAST"
+        - "PIG_ZOMBIE"
+        - "ENDERMAN"
+        - "CAVE_SPIDER"
+        - "SILVERFISH"
+        - "BLAZE"
+        - "MAGMA_CUBE"
+        - "WITCH"
+        - "WITHER"
+    contact:
+      mode: 1
+      inherit:
+      types:
+        - "CREEPER"
+        - "SKELETON"
+        - "SPIDER"
+        - "GIANT"
+        - "ZOMBIE"
+        - "SLIME"
+        - "GHAST"
+        - "PIG_ZOMBIE"
+        - "ENDERMAN"
+        - "CAVE_SPIDER"
+        - "SILVERFISH"
+        - "BLAZE"
+        - "MAGMA_CUBE"
+        - "WITCH"
+        - "BAT"
+        - "PIG"
+        - "SHEEP"
+        - "COW"
+        - "CHICKEN"
+        - "SQUID"
+        - "WOLF"
+        - "MUSHROOM_COW"
+        - "SNOWMAN"
+        - "OCELOT"
+        - "IRON_GOLEM"
+        - "VILLAGER"

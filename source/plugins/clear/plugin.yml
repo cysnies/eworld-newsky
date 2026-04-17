@@ -1,0 +1,8 @@
+name: clear
+main: clear.Main
+version: 2.1
+softdepend: [lib]
+commands:
+  clear:
+    description: none.
+    usage: /<command> ?

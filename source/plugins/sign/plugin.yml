@@ -1,0 +1,11 @@
+name: sign
+main: sign.Sign
+version: 1.0
+softdepend: [lib]
+commands:
+   sign:
+      description: none
+      usage: /<command>
+   line:
+     description: none.
+     usage: /<command> ?

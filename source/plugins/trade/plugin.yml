@@ -1,0 +1,20 @@
+name: trade
+main: trade.Main
+version: 1.0
+softdepend: [Vault, ProtocolLib]
+commands:
+  qx:
+    description: none.
+    usage: /<command> ?
+  qh:
+    description: none.
+    usage: /<command> ?
+  jq:
+    description: none.
+    usage: /<command> ?
+  wp:
+    description: none.
+    usage: /<command> ?
+  qr:
+    description: none.
+    usage: /<command> ?
